@@ -244,10 +244,8 @@ const revealObserver = new IntersectionObserver(
     });
   },
   {
-    threshold: window.matchMedia('(max-width: 900px)').matches ? 0.05 : 0.10,
-    rootMargin: window.matchMedia('(max-width: 900px)').matches
-      ? '0px 0px 0px 0px'
-      : '0px 0px -48px 0px',
+    threshold: 0,
+    rootMargin: '0px 0px 0px 0px',
   }
 );
 
@@ -255,7 +253,8 @@ function revealInView() {
   const vh = window.innerHeight || document.documentElement.clientHeight;
   document.querySelectorAll('.reveal:not(.visible)').forEach(el => {
     const rect = el.getBoundingClientRect();
-    if (rect.top < vh && rect.bottom > 0) {
+    const visiblePx = Math.min(rect.bottom, vh) - Math.max(rect.top, 0);
+    if (visiblePx > 0) {
       el.classList.add('visible');
       revealObserver.unobserve(el);
     }
@@ -265,6 +264,7 @@ function revealInView() {
 document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
 revealInView();
 window.addEventListener('load', revealInView);
+window.addEventListener('scroll', revealInView, { passive: true });
 
 
 /* ─────────────────────────────────────────

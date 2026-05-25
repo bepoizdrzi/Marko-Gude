@@ -88,6 +88,12 @@ address { font-style: normal; }
   }
 }
 
+/* Obiteljske kartice — uvijek vidljive (kritičan sadržaj, prva kartica na mobitelu) */
+.family__grid .fcard.reveal {
+  opacity: 1;
+  transform: none;
+}
+
 /* ── CONTAINER ── */
 .container {
   max-width: var(--max-w);

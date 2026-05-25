@@ -395,10 +395,12 @@
         <article class="fcard reveal" aria-label="Nikša Mimica">
           <div class="fcard__photo-wrap">
             <img
-              src="https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&w=500&q=80"
+              src="images/family/niksa.jpg"
               alt="Nikša Mimica – otac i začetnik vinarije"
               class="fcard__photo"
-              loading="lazy"
+              width="800"
+              height="533"
+              decoding="async"
             >
           </div>
           <div class="fcard__body">
@@ -416,10 +418,13 @@
         <article class="fcard fcard--center reveal" aria-label="Marko Mimica">
           <div class="fcard__photo-wrap">
             <img
-              src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&w=500&q=80"
+              src="images/family/marko.jpg"
               alt="Marko Mimica – sin i nasljednik vinarije"
               class="fcard__photo"
+              width="800"
+              height="533"
               loading="lazy"
+              decoding="async"
             >
           </div>
           <div class="fcard__body">
@@ -437,10 +442,13 @@
         <article class="fcard reveal" aria-label="Petra Mimica">
           <div class="fcard__photo-wrap">
             <img
-              src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?auto=format&w=500&q=80"
+              src="images/family/petra.jpg"
               alt="Petra Mimica – kćer i nasljednica vinarije"
               class="fcard__photo"
+              width="800"
+              height="533"
               loading="lazy"
+              decoding="async"
             >
           </div>
           <div class="fcard__body">
@@ -604,129 +612,26 @@
         </header>
       </div>
 
-      <div class="gallery__scroll reveal" tabindex="0" aria-label="Galerija fotografija – povucite u stranu">
-        <div class="gallery__track">
-          <figure class="gallery__item">
-            <button type="button" class="gallery__open" data-index="0" aria-label="Otvori fotografiju 1">
-              <img src="images/gallery/gallery-01.jpg" alt="Vinarija Mimica – fotografija 1" loading="lazy">
+      <!-- Desktop slideshow -->
+      <div class="gallery__desktop reveal">
+        <div class="gallery__stage-bar">
+          <button type="button" class="gallery__arrow" id="galleryStagePrev" aria-label="Prethodna fotografija">&#8592;</button>
+          <figure class="gallery__stage">
+            <button type="button" class="gallery__stage-open" id="galleryStageOpen" aria-label="Otvori fotografiju u punom prikazu">
+              <img class="gallery__stage-img" id="galleryStageImg" src="images/gallery/gallery-01.jpg" alt="Vinarija Mimica – fotografija 1">
             </button>
           </figure>
-          <figure class="gallery__item">
-            <button type="button" class="gallery__open" data-index="1" aria-label="Otvori fotografiju 2">
-              <img src="images/gallery/gallery-02.jpg" alt="Vinarija Mimica – fotografija 2" loading="lazy">
-            </button>
-          </figure>
-          <figure class="gallery__item">
-            <button type="button" class="gallery__open" data-index="2" aria-label="Otvori fotografiju 3">
-              <img src="images/gallery/gallery-03.jpg" alt="Vinarija Mimica – fotografija 3" loading="lazy">
-            </button>
-          </figure>
-          <figure class="gallery__item">
-            <button type="button" class="gallery__open" data-index="3" aria-label="Otvori fotografiju 4">
-              <img src="images/gallery/gallery-04.jpg" alt="Vinarija Mimica – fotografija 4" loading="lazy">
-            </button>
-          </figure>
-          <figure class="gallery__item">
-            <button type="button" class="gallery__open" data-index="4" aria-label="Otvori fotografiju 5">
-              <img src="images/gallery/gallery-05.jpg" alt="Vinarija Mimica – fotografija 5" loading="lazy">
-            </button>
-          </figure>
-          <figure class="gallery__item">
-            <button type="button" class="gallery__open" data-index="5" aria-label="Otvori fotografiju 6">
-              <img src="images/gallery/gallery-06.jpg" alt="Vinarija Mimica – fotografija 6" loading="lazy">
-            </button>
-          </figure>
-          <figure class="gallery__item">
-            <button type="button" class="gallery__open" data-index="6" aria-label="Otvori fotografiju 7">
-              <img src="images/gallery/gallery-07.jpg" alt="Vinarija Mimica – fotografija 7" loading="lazy">
-            </button>
-          </figure>
-          <figure class="gallery__item">
-            <button type="button" class="gallery__open" data-index="7" aria-label="Otvori fotografiju 8">
-              <img src="images/gallery/gallery-08.jpg" alt="Vinarija Mimica – fotografija 8" loading="lazy">
-            </button>
-          </figure>
-          <figure class="gallery__item">
-            <button type="button" class="gallery__open" data-index="8" aria-label="Otvori fotografiju 9">
-              <img src="images/gallery/gallery-09.jpg" alt="Vinarija Mimica – fotografija 9" loading="lazy">
-            </button>
-          </figure>
-          <figure class="gallery__item">
-            <button type="button" class="gallery__open" data-index="9" aria-label="Otvori fotografiju 10">
-              <img src="images/gallery/gallery-10.jpg" alt="Vinarija Mimica – fotografija 10" loading="lazy">
-            </button>
-          </figure>
-          <figure class="gallery__item">
-            <button type="button" class="gallery__open" data-index="10" aria-label="Otvori fotografiju 11">
-              <img src="images/gallery/gallery-11.jpg" alt="Vinarija Mimica – fotografija 11" loading="lazy">
-            </button>
-          </figure>
-          <figure class="gallery__item">
-            <button type="button" class="gallery__open" data-index="11" aria-label="Otvori fotografiju 12">
-              <img src="images/gallery/gallery-12.jpg" alt="Vinarija Mimica – fotografija 12" loading="lazy">
-            </button>
-          </figure>
-          <figure class="gallery__item">
-            <button type="button" class="gallery__open" data-index="12" aria-label="Otvori fotografiju 13">
-              <img src="images/gallery/gallery-13.jpg" alt="Vinarija Mimica – fotografija 13" loading="lazy">
-            </button>
-          </figure>
-          <figure class="gallery__item">
-            <button type="button" class="gallery__open" data-index="13" aria-label="Otvori fotografiju 14">
-              <img src="images/gallery/gallery-14.jpg" alt="Vinarija Mimica – fotografija 14" loading="lazy">
-            </button>
-          </figure>
-          <figure class="gallery__item">
-            <button type="button" class="gallery__open" data-index="14" aria-label="Otvori fotografiju 15">
-              <img src="images/gallery/gallery-15.jpg" alt="Vinarija Mimica – fotografija 15" loading="lazy">
-            </button>
-          </figure>
-          <figure class="gallery__item">
-            <button type="button" class="gallery__open" data-index="15" aria-label="Otvori fotografiju 16">
-              <img src="images/gallery/gallery-16.jpg" alt="Vinarija Mimica – fotografija 16" loading="lazy">
-            </button>
-          </figure>
-          <figure class="gallery__item">
-            <button type="button" class="gallery__open" data-index="16" aria-label="Otvori fotografiju 17">
-              <img src="images/gallery/gallery-17.jpg" alt="Vinarija Mimica – fotografija 17" loading="lazy">
-            </button>
-          </figure>
-          <figure class="gallery__item">
-            <button type="button" class="gallery__open" data-index="17" aria-label="Otvori fotografiju 18">
-              <img src="images/gallery/gallery-18.jpg" alt="Vinarija Mimica – fotografija 18" loading="lazy">
-            </button>
-          </figure>
-          <figure class="gallery__item">
-            <button type="button" class="gallery__open" data-index="18" aria-label="Otvori fotografiju 19">
-              <img src="images/gallery/gallery-19.jpg" alt="Vinarija Mimica – fotografija 19" loading="lazy">
-            </button>
-          </figure>
-          <figure class="gallery__item">
-            <button type="button" class="gallery__open" data-index="19" aria-label="Otvori fotografiju 20">
-              <img src="images/gallery/gallery-20.jpg" alt="Vinarija Mimica – fotografija 20" loading="lazy">
-            </button>
-          </figure>
-          <figure class="gallery__item">
-            <button type="button" class="gallery__open" data-index="20" aria-label="Otvori fotografiju 21">
-              <img src="images/gallery/gallery-21.jpg" alt="Vinarija Mimica – fotografija 21" loading="lazy">
-            </button>
-          </figure>
-          <figure class="gallery__item">
-            <button type="button" class="gallery__open" data-index="21" aria-label="Otvori fotografiju 22">
-              <img src="images/gallery/gallery-22.jpg" alt="Vinarija Mimica – fotografija 22" loading="lazy">
-            </button>
-          </figure>
-          <figure class="gallery__item">
-            <button type="button" class="gallery__open" data-index="22" aria-label="Otvori fotografiju 23">
-              <img src="images/gallery/gallery-23.jpg" alt="Vinarija Mimica – fotografija 23" loading="lazy">
-            </button>
-          </figure>
-          <figure class="gallery__item">
-            <button type="button" class="gallery__open" data-index="23" aria-label="Otvori fotografiju 24">
-              <img src="images/gallery/gallery-24.jpg" alt="Vinarija Mimica – fotografija 24" loading="lazy">
-            </button>
-          </figure>
+          <button type="button" class="gallery__arrow" id="galleryStageNext" aria-label="Sljedeća fotografija">&#8594;</button>
         </div>
+        <p class="gallery__stage-meta" id="galleryStageMeta" aria-live="polite">1 / 24</p>
+        <div class="gallery__thumbs-scroll">
+          <div class="gallery__thumbs" id="galleryThumbs"></div>
+        </div>
+      </div>
+
+      <!-- Mobile horizontal strip -->
+      <div class="gallery__scroll gallery__scroll--mobile reveal" tabindex="0" aria-label="Galerija fotografija – povucite u stranu">
+        <div class="gallery__track" id="galleryMobileTrack"></div>
       </div>
     </section>
 

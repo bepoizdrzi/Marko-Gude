@@ -68,29 +68,63 @@ document.addEventListener('keydown', e => {
 
 
 /* ─────────────────────────────────────────
-   GALLERIJA – lightbox
+   GALLERIJA
    ───────────────────────────────────────── */
-const lightbox      = document.getElementById('galleryLightbox');
-const lightboxImg   = document.getElementById('lightboxImg');
-const lightboxCounter = document.getElementById('lightboxCounter');
-const lightboxClose = document.getElementById('lightboxClose');
-const lightboxPrev  = document.getElementById('lightboxPrev');
-const lightboxNext  = document.getElementById('lightboxNext');
-const galleryOpens  = Array.from(document.querySelectorAll('.gallery__open'));
-const galleryScroll = document.querySelector('.gallery__scroll');
+const GALLERY_COUNT = 24;
+const galleryImages = Array.from({ length: GALLERY_COUNT }, (_, i) => {
+  const num = String(i + 1).padStart(2, '0');
+  return {
+    src: `images/gallery/gallery-${num}.jpg`,
+    alt: `Vinarija Mimica – fotografija ${i + 1}`,
+  };
+});
 
-let lightboxIndex = 0;
+const lightbox        = document.getElementById('galleryLightbox');
+const lightboxImg     = document.getElementById('lightboxImg');
+const lightboxCounter = document.getElementById('lightboxCounter');
+const lightboxClose   = document.getElementById('lightboxClose');
+const lightboxPrev    = document.getElementById('lightboxPrev');
+const lightboxNext    = document.getElementById('lightboxNext');
+const galleryStageImg   = document.getElementById('galleryStageImg');
+const galleryStageMeta  = document.getElementById('galleryStageMeta');
+const galleryStagePrev  = document.getElementById('galleryStagePrev');
+const galleryStageNext  = document.getElementById('galleryStageNext');
+const galleryStageOpen  = document.getElementById('galleryStageOpen');
+const galleryThumbs     = document.getElementById('galleryThumbs');
+const galleryMobileTrack = document.getElementById('galleryMobileTrack');
+const galleryScroll     = document.querySelector('.gallery__scroll--mobile');
+
+let galleryIndex = 0;
 let galleryDragStart = 0;
 let galleryDragDist = 0;
 let lightboxTouchStart = 0;
 
+function setGalleryIndex(index) {
+  galleryIndex = index;
+  const img = galleryImages[galleryIndex];
+
+  if (galleryStageImg) {
+    galleryStageImg.src = img.src;
+    galleryStageImg.alt = img.alt;
+  }
+  if (galleryStageMeta) {
+    galleryStageMeta.textContent = `${galleryIndex + 1} / ${GALLERY_COUNT}`;
+  }
+  galleryThumbs?.querySelectorAll('.gallery__thumb').forEach((btn, i) => {
+    btn.classList.toggle('is-active', i === galleryIndex);
+  });
+}
+
+function stepGallery(dir) {
+  setGalleryIndex((galleryIndex + dir + GALLERY_COUNT) % GALLERY_COUNT);
+}
+
 function showLightbox(index) {
-  lightboxIndex = index;
-  const btn = galleryOpens[lightboxIndex];
-  const img = btn.querySelector('img');
+  setGalleryIndex(index);
+  const img = galleryImages[galleryIndex];
   lightboxImg.src = img.src;
   lightboxImg.alt = img.alt;
-  lightboxCounter.textContent = `${lightboxIndex + 1} / ${galleryOpens.length}`;
+  lightboxCounter.textContent = `${galleryIndex + 1} / ${GALLERY_COUNT}`;
   lightbox.hidden = false;
   document.body.style.overflow = 'hidden';
   lightboxClose.focus();
@@ -102,41 +136,89 @@ function closeLightbox() {
   if (!navMenu.classList.contains('open')) {
     document.body.style.overflow = '';
   }
-  galleryOpens[lightboxIndex]?.focus();
 }
 
 function stepLightbox(dir) {
-  lightboxIndex = (lightboxIndex + dir + galleryOpens.length) % galleryOpens.length;
-  showLightbox(lightboxIndex);
+  stepGallery(dir);
+  const img = galleryImages[galleryIndex];
+  lightboxImg.src = img.src;
+  lightboxImg.alt = img.alt;
+  lightboxCounter.textContent = `${galleryIndex + 1} / ${GALLERY_COUNT}`;
 }
 
-galleryOpens.forEach(btn => {
-  btn.addEventListener('click', e => {
-    if (galleryDragDist > 8) {
-      e.preventDefault();
-      return;
-    }
-    showLightbox(Number(btn.dataset.index));
+function bindGalleryOpens() {
+  document.querySelectorAll('.gallery__open').forEach(btn => {
+    btn.addEventListener('click', e => {
+      if (galleryDragDist > 8) {
+        e.preventDefault();
+        return;
+      }
+      showLightbox(Number(btn.dataset.index));
+    });
   });
-});
+}
 
-lightboxClose.addEventListener('click', closeLightbox);
-lightboxPrev.addEventListener('click', () => stepLightbox(-1));
-lightboxNext.addEventListener('click', () => stepLightbox(1));
+function initGallery() {
+  if (galleryThumbs) {
+    galleryThumbs.innerHTML = galleryImages.map((img, i) => `
+      <button type="button" class="gallery__thumb${i === 0 ? ' is-active' : ''}" data-index="${i}" aria-label="Fotografija ${i + 1}">
+        <img src="${img.src}" alt="" loading="lazy">
+      </button>
+    `).join('');
 
-lightbox.addEventListener('click', e => {
-  if (e.target === lightbox) closeLightbox();
-});
+    galleryThumbs.addEventListener('click', e => {
+      const btn = e.target.closest('.gallery__thumb');
+      if (!btn) return;
+      setGalleryIndex(Number(btn.dataset.index));
+    });
+  }
 
-lightbox.addEventListener('touchstart', e => {
-  lightboxTouchStart = e.changedTouches[0].clientX;
-}, { passive: true });
+  if (galleryMobileTrack) {
+    galleryMobileTrack.innerHTML = galleryImages.map((img, i) => `
+      <figure class="gallery__item">
+        <button type="button" class="gallery__open" data-index="${i}" aria-label="Otvori fotografiju ${i + 1}">
+          <img src="${img.src}" alt="${img.alt}" loading="lazy">
+        </button>
+      </figure>
+    `).join('');
+    bindGalleryOpens();
+  }
 
-lightbox.addEventListener('touchend', e => {
-  const diff = e.changedTouches[0].clientX - lightboxTouchStart;
-  if (Math.abs(diff) < 40) return;
-  stepLightbox(diff > 0 ? -1 : 1);
-}, { passive: true });
+  galleryStagePrev?.addEventListener('click', () => stepGallery(-1));
+  galleryStageNext?.addEventListener('click', () => stepGallery(1));
+  galleryStageOpen?.addEventListener('click', () => showLightbox(galleryIndex));
+
+  setGalleryIndex(0);
+}
+
+if (lightbox) {
+  initGallery();
+
+  lightboxClose.addEventListener('click', closeLightbox);
+  lightboxPrev.addEventListener('click', () => stepLightbox(-1));
+  lightboxNext.addEventListener('click', () => stepLightbox(1));
+
+  lightbox.addEventListener('click', e => {
+    if (e.target === lightbox) closeLightbox();
+  });
+
+  lightbox.addEventListener('touchstart', e => {
+    lightboxTouchStart = e.changedTouches[0].clientX;
+  }, { passive: true });
+
+  lightbox.addEventListener('touchend', e => {
+    const diff = e.changedTouches[0].clientX - lightboxTouchStart;
+    if (Math.abs(diff) < 40) return;
+    stepLightbox(diff > 0 ? -1 : 1);
+  }, { passive: true });
+
+  document.addEventListener('keydown', e => {
+    if (lightbox.hidden) return;
+    if (e.key === 'Escape') closeLightbox();
+    if (e.key === 'ArrowLeft') stepLightbox(-1);
+    if (e.key === 'ArrowRight') stepLightbox(1);
+  });
+}
 
 if (galleryScroll) {
   galleryScroll.addEventListener('pointerdown', e => {
@@ -150,13 +232,6 @@ if (galleryScroll) {
     setTimeout(() => { galleryDragDist = 0; }, 0);
   });
 }
-
-document.addEventListener('keydown', e => {
-  if (lightbox.hidden) return;
-  if (e.key === 'Escape') closeLightbox();
-  if (e.key === 'ArrowLeft') stepLightbox(-1);
-  if (e.key === 'ArrowRight') stepLightbox(1);
-});
 
 
 /* ─────────────────────────────────────────

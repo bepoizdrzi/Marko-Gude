@@ -71,11 +71,28 @@ document.addEventListener('keydown', e => {
    GALLERIJA
    ───────────────────────────────────────── */
 const GALLERY_COUNT = 24;
+
+function galleryPhotoAlt(index) {
+  const n = index + 1;
+  if (window.i18n) {
+    return `${window.i18n.t('gallery.photo')} ${n}`;
+  }
+  return `Vinarija Mimica – fotografija ${n}`;
+}
+
+function galleryOpenLabel(index) {
+  const n = index + 1;
+  if (window.i18n) {
+    return `${window.i18n.t('gallery.openN')} ${n}`;
+  }
+  return `Otvori fotografiju ${n}`;
+}
+
 const galleryImages = Array.from({ length: GALLERY_COUNT }, (_, i) => {
   const num = String(i + 1).padStart(2, '0');
   return {
     src: `images/gallery/gallery-${num}.jpg`,
-    alt: `Vinarija Mimica – fotografija ${i + 1}`,
+    get alt() { return galleryPhotoAlt(i); },
   };
 });
 
@@ -85,14 +102,8 @@ const lightboxCounter = document.getElementById('lightboxCounter');
 const lightboxClose   = document.getElementById('lightboxClose');
 const lightboxPrev    = document.getElementById('lightboxPrev');
 const lightboxNext    = document.getElementById('lightboxNext');
-const galleryStageImg   = document.getElementById('galleryStageImg');
-const galleryStageMeta  = document.getElementById('galleryStageMeta');
-const galleryStagePrev  = document.getElementById('galleryStagePrev');
-const galleryStageNext  = document.getElementById('galleryStageNext');
-const galleryStageOpen  = document.getElementById('galleryStageOpen');
-const galleryThumbs     = document.getElementById('galleryThumbs');
 const galleryMobileTrack = document.getElementById('galleryMobileTrack');
-const galleryScroll     = document.querySelector('.gallery__scroll--mobile');
+const galleryStrip    = document.getElementById('galleryStrip');
 
 let galleryIndex = 0;
 let galleryDragStart = 0;
@@ -101,18 +112,6 @@ let lightboxTouchStart = 0;
 
 function setGalleryIndex(index) {
   galleryIndex = index;
-  const img = galleryImages[galleryIndex];
-
-  if (galleryStageImg) {
-    galleryStageImg.src = img.src;
-    galleryStageImg.alt = img.alt;
-  }
-  if (galleryStageMeta) {
-    galleryStageMeta.textContent = `${galleryIndex + 1} / ${GALLERY_COUNT}`;
-  }
-  galleryThumbs?.querySelectorAll('.gallery__thumb').forEach((btn, i) => {
-    btn.classList.toggle('is-active', i === galleryIndex);
-  });
 }
 
 function stepGallery(dir) {
@@ -158,41 +157,38 @@ function bindGalleryOpens() {
   });
 }
 
-function initGallery() {
-  if (galleryThumbs) {
-    galleryThumbs.innerHTML = galleryImages.map((img, i) => `
-      <button type="button" class="gallery__thumb${i === 0 ? ' is-active' : ''}" data-index="${i}" aria-label="Fotografija ${i + 1}">
-        <img src="${img.src}" alt="" loading="lazy">
-      </button>
-    `).join('');
-
-    galleryThumbs.addEventListener('click', e => {
-      const btn = e.target.closest('.gallery__thumb');
-      if (!btn) return;
-      setGalleryIndex(Number(btn.dataset.index));
-    });
-  }
-
+function buildGalleryDom() {
   if (galleryMobileTrack) {
     galleryMobileTrack.innerHTML = galleryImages.map((img, i) => `
       <figure class="gallery__item">
-        <button type="button" class="gallery__open" data-index="${i}" aria-label="Otvori fotografiju ${i + 1}">
+        <button type="button" class="gallery__open" data-index="${i}" aria-label="${galleryOpenLabel(i)}">
           <img src="${img.src}" alt="${img.alt}" loading="lazy">
         </button>
       </figure>
     `).join('');
     bindGalleryOpens();
   }
+}
 
-  galleryStagePrev?.addEventListener('click', () => stepGallery(-1));
-  galleryStageNext?.addEventListener('click', () => stepGallery(1));
-  galleryStageOpen?.addEventListener('click', () => showLightbox(galleryIndex));
+function initGallery() {
+  buildGalleryDom();
+}
 
-  setGalleryIndex(0);
+function refreshGalleryLanguage() {
+  if (!galleryMobileTrack) return;
+  buildGalleryDom();
 }
 
 if (lightbox) {
   initGallery();
+
+  document.addEventListener('languagechange', () => {
+    refreshGalleryLanguage();
+    if (!lightbox.hidden) {
+      const img = galleryImages[galleryIndex];
+      lightboxImg.alt = img.alt;
+    }
+  });
 
   lightboxClose.addEventListener('click', closeLightbox);
   lightboxPrev.addEventListener('click', () => stepLightbox(-1));
@@ -220,15 +216,15 @@ if (lightbox) {
   });
 }
 
-if (galleryScroll) {
-  galleryScroll.addEventListener('pointerdown', e => {
+if (galleryStrip) {
+  galleryStrip.addEventListener('pointerdown', e => {
     galleryDragStart = e.clientX;
     galleryDragDist = 0;
   });
-  galleryScroll.addEventListener('pointermove', e => {
+  galleryStrip.addEventListener('pointermove', e => {
     galleryDragDist = Math.max(galleryDragDist, Math.abs(e.clientX - galleryDragStart));
   });
-  galleryScroll.addEventListener('pointerup', () => {
+  galleryStrip.addEventListener('pointerup', () => {
     setTimeout(() => { galleryDragDist = 0; }, 0);
   });
 }
@@ -248,12 +244,27 @@ const revealObserver = new IntersectionObserver(
     });
   },
   {
-    threshold: 0.10,
-    rootMargin: '0px 0px -48px 0px',
+    threshold: window.matchMedia('(max-width: 900px)').matches ? 0.05 : 0.10,
+    rootMargin: window.matchMedia('(max-width: 900px)').matches
+      ? '0px 0px 0px 0px'
+      : '0px 0px -48px 0px',
   }
 );
 
+function revealInView() {
+  const vh = window.innerHeight || document.documentElement.clientHeight;
+  document.querySelectorAll('.reveal:not(.visible)').forEach(el => {
+    const rect = el.getBoundingClientRect();
+    if (rect.top < vh && rect.bottom > 0) {
+      el.classList.add('visible');
+      revealObserver.unobserve(el);
+    }
+  });
+}
+
 document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+revealInView();
+window.addEventListener('load', revealInView);
 
 
 /* ─────────────────────────────────────────

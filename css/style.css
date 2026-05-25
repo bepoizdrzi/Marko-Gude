@@ -95,6 +95,15 @@ address { font-style: normal; }
   transform: none;
 }
 
+/* Shop slika — uvijek vidljiva (lazy load unutar reveal ne radi pouzdano na mobitelu) */
+.shops__visual,
+.shops__photo-wrap,
+.shops__photo {
+  opacity: 1;
+  visibility: visible;
+  transform: none;
+}
+
 /* ── CONTAINER ── */
 .container {
   max-width: var(--max-w);
@@ -1615,6 +1624,8 @@ address { font-style: normal; }
   border-radius: var(--radius);
   overflow: hidden;
   aspect-ratio: 4 / 3;
+  min-height: 220px;
+  background: rgba(30, 20, 10, 0.06);
 }
 .shops__photo {
   position: absolute;

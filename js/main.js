@@ -41,6 +41,7 @@ const burger  = document.getElementById('navBurger');
 const navMenu = document.getElementById('navMenu');
 
 function openMenu() {
+  nav.classList.add('menu-open');
   navMenu.classList.add('open');
   burger.classList.add('open');
   burger.setAttribute('aria-expanded', 'true');
@@ -48,6 +49,7 @@ function openMenu() {
 }
 
 function closeMenu() {
+  nav.classList.remove('menu-open');
   navMenu.classList.remove('open');
   burger.classList.remove('open');
   burger.setAttribute('aria-expanded', 'false');

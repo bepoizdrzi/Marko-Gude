@@ -19,6 +19,7 @@ const I18N = {
     'nav.galerija': 'Galerija',
     'nav.kontakt': 'Kontakt',
     'nav.webshop': 'Webshop →',
+    'nav.menu.tagline': 'Tradicija od 1714.',
     'lang.aria': 'Odabir jezika',
 
     'hero.aria': 'Uvodni dio',
@@ -142,7 +143,7 @@ const I18N = {
     'label.perPerson': 'po osobi',
     'tour1.duration': '3 sata',
     'tour1.minGroup': '6 osoba',
-    'tour2.duration': '1,5 sata',
+    'tour2.duration': '1,5 sati',
     'tour2.minGroup': '5 osoba',
     'tours.booking': 'Za rezervacije i sve informacije:',
 
@@ -241,6 +242,7 @@ const I18N = {
     'nav.galerija': 'Gallery',
     'nav.kontakt': 'Contact',
     'nav.webshop': 'Webshop →',
+    'nav.menu.tagline': 'Tradition since 1714.',
     'lang.aria': 'Language selection',
 
     'hero.aria': 'Introduction',

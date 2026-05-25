@@ -6,7 +6,7 @@
    KONFIGURACIJA
    Zamijenite URL s pravom adresom webshopa.
    ───────────────────────────────────────── */
-const WEBSHOP_URL = 'https://YOUR-WEBSHOP-URL.hr';
+const WEBSHOP_URL = 'https://www.wineandmore.com/b2b-shop/?store_id=47217&store_key=eZzXFle5WWgUq2LF5My2RDEI&ved=2ahUKEwiUw4mGpNSUAxWzX_EDHeFIJIoQgU96BAgfEAM';
 
 
 /* ─────────────────────────────────────────
@@ -64,6 +64,98 @@ navMenu.querySelectorAll('a').forEach(link => {
 
 document.addEventListener('keydown', e => {
   if (e.key === 'Escape' && navMenu.classList.contains('open')) closeMenu();
+});
+
+
+/* ─────────────────────────────────────────
+   GALLERIJA – lightbox
+   ───────────────────────────────────────── */
+const lightbox      = document.getElementById('galleryLightbox');
+const lightboxImg   = document.getElementById('lightboxImg');
+const lightboxCounter = document.getElementById('lightboxCounter');
+const lightboxClose = document.getElementById('lightboxClose');
+const lightboxPrev  = document.getElementById('lightboxPrev');
+const lightboxNext  = document.getElementById('lightboxNext');
+const galleryOpens  = Array.from(document.querySelectorAll('.gallery__open'));
+const galleryScroll = document.querySelector('.gallery__scroll');
+
+let lightboxIndex = 0;
+let galleryDragStart = 0;
+let galleryDragDist = 0;
+let lightboxTouchStart = 0;
+
+function showLightbox(index) {
+  lightboxIndex = index;
+  const btn = galleryOpens[lightboxIndex];
+  const img = btn.querySelector('img');
+  lightboxImg.src = img.src;
+  lightboxImg.alt = img.alt;
+  lightboxCounter.textContent = `${lightboxIndex + 1} / ${galleryOpens.length}`;
+  lightbox.hidden = false;
+  document.body.style.overflow = 'hidden';
+  lightboxClose.focus();
+}
+
+function closeLightbox() {
+  lightbox.hidden = true;
+  lightboxImg.src = '';
+  if (!navMenu.classList.contains('open')) {
+    document.body.style.overflow = '';
+  }
+  galleryOpens[lightboxIndex]?.focus();
+}
+
+function stepLightbox(dir) {
+  lightboxIndex = (lightboxIndex + dir + galleryOpens.length) % galleryOpens.length;
+  showLightbox(lightboxIndex);
+}
+
+galleryOpens.forEach(btn => {
+  btn.addEventListener('click', e => {
+    if (galleryDragDist > 8) {
+      e.preventDefault();
+      return;
+    }
+    showLightbox(Number(btn.dataset.index));
+  });
+});
+
+lightboxClose.addEventListener('click', closeLightbox);
+lightboxPrev.addEventListener('click', () => stepLightbox(-1));
+lightboxNext.addEventListener('click', () => stepLightbox(1));
+
+lightbox.addEventListener('click', e => {
+  if (e.target === lightbox) closeLightbox();
+});
+
+lightbox.addEventListener('touchstart', e => {
+  lightboxTouchStart = e.changedTouches[0].clientX;
+}, { passive: true });
+
+lightbox.addEventListener('touchend', e => {
+  const diff = e.changedTouches[0].clientX - lightboxTouchStart;
+  if (Math.abs(diff) < 40) return;
+  stepLightbox(diff > 0 ? -1 : 1);
+}, { passive: true });
+
+if (galleryScroll) {
+  galleryScroll.addEventListener('pointerdown', e => {
+    galleryDragStart = e.clientX;
+    galleryDragDist = 0;
+  });
+  galleryScroll.addEventListener('pointermove', e => {
+    galleryDragDist = Math.max(galleryDragDist, Math.abs(e.clientX - galleryDragStart));
+  });
+  galleryScroll.addEventListener('pointerup', () => {
+    setTimeout(() => { galleryDragDist = 0; }, 0);
+  });
+}
+
+document.addEventListener('keydown', e => {
+  if (lightbox.hidden) return;
+  if (e.key === 'Escape') closeLightbox();
+  if (e.key === 'ArrowLeft') stepLightbox(-1);
+  if (e.key === 'ArrowRight') stepLightbox(1);
 });
 
 

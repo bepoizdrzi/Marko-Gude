@@ -239,6 +239,26 @@ address { font-style: normal; }
 .nav.menu-open .lang-switch__sep { background: var(--border-mid); }
 .nav.menu-open .nav__burger span { background: var(--earth); }
 
+/* Mobilni overlay — tamni tekst, ne hero bijeli stilovi */
+.nav.menu-open .nav__menu .nav__menu-tagline { color: var(--gold); }
+.nav.menu-open .nav__menu .nav__link,
+.nav.menu-open .nav__menu .nav__link--active {
+  color: var(--earth);
+}
+.nav.menu-open .nav__menu .nav__link:hover,
+.nav.menu-open .nav__menu .nav__link:focus-visible {
+  color: var(--wine);
+}
+.nav.menu-open .nav__menu .nav__link::before,
+.nav.menu-open .nav__menu .nav__link::after {
+  color: var(--gold);
+}
+.nav.menu-open .nav__menu .nav__shop {
+  color: var(--warm-white);
+  background: var(--wine);
+  border-color: var(--wine);
+}
+
 .nav__container {
   max-width: calc(var(--max-w) + 160px);
   margin-inline: auto;
@@ -2519,8 +2539,7 @@ address { font-style: normal; }
       calc(var(--nav-h) + 28px)
       clamp(24px, 6vw, 40px)
       max(32px, env(safe-area-inset-bottom));
-    background:
-      linear-gradient(165deg, var(--warm-white) 0%, var(--cream) 48%, rgba(232, 213, 176, 0.22) 100%);
+    background: var(--cream);
     border: none;
     box-shadow: none;
     max-height: none;

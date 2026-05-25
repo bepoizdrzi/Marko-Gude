@@ -39,10 +39,32 @@ syncNav();
    ───────────────────────────────────────── */
 const burger  = document.getElementById('navBurger');
 const navMenu = document.getElementById('navMenu');
+const navTools = document.querySelector('.nav__tools');
+const mobileNavMq = window.matchMedia('(max-width: 900px)');
+
+function syncNavMenuPlacement() {
+  if (!navMenu || !navTools) return;
+  if (mobileNavMq.matches) {
+    if (navMenu.parentElement !== document.body) document.body.appendChild(navMenu);
+  } else {
+    if (navMenu.parentElement !== navTools) navTools.appendChild(navMenu);
+    navMenu.classList.remove('open');
+    navMenu.setAttribute('aria-hidden', 'true');
+    burger.classList.remove('open');
+    burger.setAttribute('aria-expanded', 'false');
+    nav.classList.remove('menu-open');
+    document.body.style.overflow = '';
+  }
+}
+
+syncNavMenuPlacement();
+mobileNavMq.addEventListener('change', syncNavMenuPlacement);
 
 function openMenu() {
+  syncNavMenuPlacement();
   nav.classList.add('menu-open');
   navMenu.classList.add('open');
+  navMenu.setAttribute('aria-hidden', 'false');
   burger.classList.add('open');
   burger.setAttribute('aria-expanded', 'true');
   document.body.style.overflow = 'hidden';
@@ -51,6 +73,7 @@ function openMenu() {
 function closeMenu() {
   nav.classList.remove('menu-open');
   navMenu.classList.remove('open');
+  navMenu.setAttribute('aria-hidden', 'true');
   burger.classList.remove('open');
   burger.setAttribute('aria-expanded', 'false');
   document.body.style.overflow = '';

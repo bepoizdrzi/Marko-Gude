@@ -88,9 +88,10 @@ address { font-style: normal; }
   }
 }
 
-/* Obiteljske kartice — uvijek vidljive (kritičan sadržaj, prva kartica na mobitelu) */
-.family__grid .fcard.reveal {
+/* Obiteljske kartice — uvijek vidljive (bez scroll-reveal) */
+.family__grid .fcard {
   opacity: 1;
+  visibility: visible;
   transform: none;
 }
 
@@ -1137,6 +1138,7 @@ address { font-style: normal; }
 /* ── FAMILY ── */
 .family {
   background: var(--cream);
+  scroll-margin-top: calc(var(--nav-h) + 12px);
 }
 
 .family__intro {
@@ -1173,6 +1175,7 @@ address { font-style: normal; }
 .fcard__photo-wrap {
   position: relative;
   aspect-ratio: 3 / 2;
+  min-height: 200px;
   overflow: hidden;
   background: rgba(30, 20, 10, 0.06);
 }
@@ -2449,13 +2452,14 @@ address { font-style: normal; }
 @media (max-width: 1100px) {
   .wines__grid { grid-template-columns: repeat(2, 1fr); }
   .wines__grid .wcard:nth-child(3) { transition-delay: 0ms; }
-}
-
-@media (max-width: 1000px) {
   .family__intro { padding-bottom: clamp(40px, 5vw, 72px); }
-  .family__grid { grid-template-columns: 1fr 1fr; }
-  .family__grid .fcard:last-child { grid-column: span 2; max-width: 360px; margin-inline: auto; }
-  .tours__top { padding-top: 48px; padding-bottom: 32px; }
+  .family__grid {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    max-width: 520px;
+    margin-inline: auto;
+  }
 }
 
 /* ══════════════════════════════════════════════
@@ -2528,9 +2532,6 @@ address { font-style: normal; }
   .wines__featured::before { display: none; }
   .wines__featured-name { font-size: clamp(36px, 8vw, 64px); }
 
-  /* ── FAMILY ── */
-  .family__grid { grid-template-columns: 1fr; max-width: 440px; margin-inline: auto; }
-
   /* ── SHOPS ── */
   .shops__main { grid-template-columns: 1fr; gap: 48px; }
   .shops__visual { max-width: 520px; margin-inline: auto; order: -1; }
@@ -2590,11 +2591,7 @@ address { font-style: normal; }
   .wines__grid .wcard { transition-delay: 0ms !important; }
 
   /* ── FAMILY ── */
-  .family__grid {
-    max-width: none;
-    padding-inline: clamp(16px, 4vw, 24px);
-  }
-  .fcard__photo-wrap { aspect-ratio: 4 / 3; }
+  .fcard__photo-wrap { aspect-ratio: 4 / 3; min-height: 220px; }
   .fcard__name { font-size: 22px; }
   .family__tagline { padding: 28px 20px; margin-block: 40px; }
   .family__tagline p { font-size: 14.5px; }

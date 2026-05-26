@@ -9,7 +9,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css?v=8">
+  <link rel="stylesheet" href="css/style.css?v=12">
 </head>
 <body>
 
@@ -29,9 +29,29 @@
 
       <div class="nav__tools">
         <div class="lang-switch" role="group" data-i18n-aria="lang.aria">
-          <button type="button" class="lang-switch__btn is-active" data-lang="hr" aria-pressed="true">HR</button>
+          <button type="button" class="lang-switch__btn is-active" data-lang="hr" aria-pressed="true" data-i18n-aria="lang.hr">
+            <img
+              class="lang-switch__flag"
+              src="images/flags/flag-hr.png"
+              width="52"
+              height="34"
+              alt=""
+              decoding="async"
+              draggable="false"
+            >
+          </button>
           <span class="lang-switch__sep" aria-hidden="true"></span>
-          <button type="button" class="lang-switch__btn" data-lang="en" aria-pressed="false">EN</button>
+          <button type="button" class="lang-switch__btn" data-lang="en" aria-pressed="false" data-i18n-aria="lang.en">
+            <img
+              class="lang-switch__flag"
+              src="images/flags/flag-gb.png"
+              width="52"
+              height="34"
+              alt=""
+              decoding="async"
+              draggable="false"
+            >
+          </button>
         </div>
 
         <button class="nav__burger" id="navBurger"
@@ -45,13 +65,12 @@
   </nav>
 
   <div class="nav__menu" id="navMenu" aria-hidden="true">
-    <p class="nav__menu-tagline" data-i18n="nav.menu.tagline">Tradicija od 1714.</p>
     <ul class="nav__list" role="list">
       <li><a href="#o-nama"          class="nav__link" data-i18n="nav.o-nama">O nama</a></li>
+      <li><a href="#ture"            class="nav__link" data-i18n="nav.ture">Vinske ture</a></li>
       <li><a href="#vinogradi"       class="nav__link" data-i18n="nav.vinogradi">Vinogradi</a></li>
       <li><a href="#vina"            class="nav__link" data-i18n="nav.vina">Vina</a></li>
       <li><a href="#obitelj"         class="nav__link" data-i18n="nav.obitelj">Obitelj</a></li>
-      <li><a href="#ture"            class="nav__link" data-i18n="nav.ture">Vinske ture</a></li>
       <li><a href="#prodajna-mjesta" class="nav__link" data-i18n="nav.prodajna">Prodajna mjesta</a></li>
       <li><a href="#galerija"        class="nav__link" data-i18n="nav.galerija">Galerija</a></li>
       <li><a href="#kontakt"         class="nav__link" data-i18n="nav.kontakt">Kontakt</a></li>
@@ -111,9 +130,9 @@
           <div class="about__visual reveal">
             <div class="about__photo-wrap">
               <img
-                src="images/about-trgovina.png"
+                src="images/gallery/gallery-05.jpg"
                 data-i18n-alt="about.alt"
-                alt="Mimica Winery – wine & gastro shop u Omišu"
+                alt="Vinarija Mimica – fotografija"
                 class="about__photo"
                 width="1200"
                 height="800"
@@ -125,10 +144,10 @@
 
           <div class="about__content reveal reveal--delay">
             <p class="eyebrow" data-i18n="about.eyebrow">O vinariji</p>
-            <h2 class="h2" id="about-h" data-i18n-html="about.h2">Lokalna, obiteljska<br><em>butik vinarija</em></h2>
+            <h2 class="h2" id="about-h" data-i18n-html="about.h2">Lokalna obiteljska<br><em>vinarija</em></h2>
             <div class="about__text">
               <p data-i18n="about.p1">
-                Mi smo lokalna, obiteljska butik vinarija Mimica. Sva naša vina
+                Vinarija Mimica je lokalna obiteljska vinarija. Sva naša vina
                 proizvodimo isključivo od autohtonih hrvatskih sorti grožđa.
               </p>
               <p data-i18n="about.p2">
@@ -162,6 +181,126 @@
 
         </div>
       </div>
+    </section>
+
+    <!-- ─── VINSKE TURE ─── -->
+    <section class="tours" id="ture" aria-labelledby="tours-h">
+
+      <div class="container tours__top reveal">
+        <div class="tours__top-text">
+          <p class="eyebrow eyebrow--light" data-i18n="tours.eyebrow">Vinske ture</p>
+          <h2 class="h2 h2--light" id="tours-h" data-i18n-html="tours.h2">Zakoračite u naš<br><em>svijet</em></h2>
+          <p class="tours__intro" data-i18n="tours.intro">
+            Osmislili smo dvije ture kao putovanje kroz povijest, obiteljsku
+            tradiciju i predivan krajolik u kojem stvaramo naša vina. Sve ture
+            organiziraju se uz prethodnu najavu.
+          </p>
+        </div>
+      </div>
+
+      <div class="container tours__cards">
+
+        <article class="tcard tcard--gastro reveal" aria-labelledby="tour1-h">
+          <div class="tcard__body">
+            <div class="tcard__num" aria-hidden="true">01</div>
+            <div class="tcard__badge" data-i18n="tour1.badge">Wine &amp; Gastro</div>
+            <h3 class="tcard__name" id="tour1-h" data-i18n="tour1.name">Ekskluzivna rustikalna dalmatinska vinska tura</h3>
+            <p class="tcard__desc" data-i18n="tour1.desc">
+              Trosatna avantura od trsa do dalmatinskog stola – od vinograda u Svinišću do večere u konobi.
+            </p>
+            <ul class="tcard__list">
+              <li><span class="tcard__dot" aria-hidden="true"></span><span data-i18n-html="tour1.li1"><strong>Posjet vinogradu</strong> – 5 rakija i likera s dalmatinskim soparnikom</span></li>
+              <li><span class="tcard__dot" aria-hidden="true"></span><span data-i18n-html="tour1.li2"><strong>Večera</strong> u 3 slijeda</span></li>
+              <li><span class="tcard__dot" aria-hidden="true"></span><span data-i18n-html="tour1.li3"><strong>Vinska selekcija</strong>: 5 vina po preporuci vinara</span></li>
+              <li><span class="tcard__dot" aria-hidden="true"></span><span data-i18n="tour1.li4">Opcija: živa glazba na zahtjev</span></li>
+            </ul>
+            <div class="tcard__footer">
+              <div class="tcard__meta">
+                <div class="tcard__meta-item">
+                  <span class="tcard__meta-label" data-i18n="label.duration">Trajanje</span>
+                  <span class="tcard__meta-val" data-i18n="tour1.duration">3 sata</span>
+                </div>
+                <div class="tcard__meta-item">
+                  <span class="tcard__meta-label" data-i18n="label.minGroup">Min. grupa</span>
+                  <span class="tcard__meta-val" data-i18n="tour1.minGroup">6 osoba</span>
+                </div>
+              </div>
+              <div class="tcard__price">
+                <span class="tcard__price-num">110 €</span>
+                <span class="tcard__price-label" data-i18n="label.perPerson">po osobi</span>
+              </div>
+            </div>
+          </div>
+          <div class="tcard__image" aria-hidden="true">
+            <img
+              src="images/tour-rustikalna-vinograd.png"
+              data-i18n-alt="tour1.alt"
+              alt="Degustacija vina i soparnika među vinovim trsovima Vinarije Mimica"
+              class="tcard__image-photo"
+              width="1200"
+              height="900"
+              loading="lazy"
+              decoding="async"
+            >
+            <div class="tcard__image-overlay"></div>
+          </div>
+        </article>
+
+        <article class="tcard tcard--rev reveal reveal--delay" aria-labelledby="tour2-h">
+          <div class="tcard__image" aria-hidden="true">
+            <img
+              src="images/tour-outdoor-degustacija.png"
+              data-i18n-alt="tour2.alt"
+              alt="Vinogradi na padinama Omiške Dinare s pogledom na more"
+              class="tcard__image-photo"
+              width="1600"
+              height="1200"
+              loading="lazy"
+              decoding="async"
+            >
+            <div class="tcard__image-overlay"></div>
+          </div>
+          <div class="tcard__body">
+            <div class="tcard__num" aria-hidden="true">02</div>
+            <div class="tcard__badge" data-i18n="tour2.badge">Outdoor degustacija</div>
+            <h3 class="tcard__name" id="tour2-h" data-i18n="tour2.name">Degustacija na strmim padinama Dinare</h3>
+            <p class="tcard__desc" data-i18n="tour2.desc">
+              Na otvorenom, među trsovima na padinama Omiške Dinare – s pogledom koji oduzima dah.
+            </p>
+            <ul class="tcard__list">
+              <li><span class="tcard__dot" aria-hidden="true"></span><span data-i18n-html="tour2.li1"><strong>4 vrhunska vina</strong> i domaće rakije po izboru</span></li>
+              <li><span class="tcard__dot" aria-hidden="true"></span><span data-i18n-html="tour2.li2"><strong>Gastro pratnja</strong> – sirevi, pršut, hrskavi krekeri</span></li>
+              <li><span class="tcard__dot" aria-hidden="true"></span><span data-i18n="tour2.li3">Panoramski pogled na vinograde i Omiš</span></li>
+            </ul>
+            <div class="tcard__footer">
+              <div class="tcard__meta">
+                <div class="tcard__meta-item">
+                  <span class="tcard__meta-label" data-i18n="label.duration">Trajanje</span>
+                  <span class="tcard__meta-val" data-i18n="tour2.duration">1,5 sati</span>
+                </div>
+                <div class="tcard__meta-item">
+                  <span class="tcard__meta-label" data-i18n="label.minGroup">Min. grupa</span>
+                  <span class="tcard__meta-val" data-i18n="tour2.minGroup">5 osoba</span>
+                </div>
+              </div>
+              <div class="tcard__price">
+                <span class="tcard__price-num">40 €</span>
+                <span class="tcard__price-label" data-i18n="label.perPerson">po osobi</span>
+              </div>
+            </div>
+          </div>
+        </article>
+
+      </div>
+
+      <div class="container">
+        <div class="tours__booking reveal">
+          <p data-i18n="tours.booking">Za rezervacije i sve informacije:</p>
+          <a href="tel:+385994130518" class="tours__phone">+385 99 413 0518</a>
+          <span class="tours__contact-name">Marko Mimica</span>
+        </div>
+      </div>
+
     </section>
 
     <!-- ─── PRIČA O ZINFANDELU ─── -->
@@ -229,7 +368,7 @@
           <p class="eyebrow eyebrow--light" data-i18n="vineyards.eyebrow">Naši vinogradi</p>
           <h2 class="h2 h2--light" id="vineyards-h" data-i18n-html="vineyards.h2">Strme padine<br><em>Omiške Dinare</em></h2>
           <p class="vineyards__body" data-i18n-html="vineyards.p1">
-            Naši vinogradi smješteni su na strmim južnim padinama Omiške Dinare,
+            Vinogradi vinarije Mimica smješteni su na strmim južnim padinama Omiške Dinare,
             na položaju koji je idealan za proizvodnju vrhunskih vina. Zbog ovog
             iznimnog mikrolokaliteta, naša je loza izložena
             <strong>trostrukoj insolaciji</strong> te savršenim klimatskim uvjetima –
@@ -290,11 +429,6 @@
                 renesansna Dalmacija bude prepoznata na svjetskoj vinskoj karti.
                 Moćan, robustan, punog tijela – sunce i kamen u čaši.
               </p>
-              <div class="wines__featured-tags">
-                <span data-i18n="wines.tag1">Intenzivne sortne karakteristike</span>
-                <span data-i18n="wines.tag2">Puno tijelo</span>
-                <span data-i18n="wines.tag3">Dugo starenje</span>
-              </div>
               <div class="wines__featured-meta">
                 <div class="wines__meta-item">
                   <span class="wines__meta-label" data-i18n="label.temp">Temperatura</span>
@@ -309,8 +443,8 @@
             <div class="wines__featured-accent" aria-hidden="true">
               <figure class="wines__featured-bottle">
                 <img
-                  src="images/tribidrag-bottle.png"
-                  alt=""
+                  src="images/tribidrag-bottle.png?v=3"
+                  alt="Tribidrag — Vinarija Mimica"
                   class="wines__featured-bottle-img"
                   width="600"
                   height="900"
@@ -346,11 +480,7 @@
                 voća do finih nijansi mediteranskog bilja. Na nepcu donosi ugodnu
                 aromatičnost, optimalne kiseline i finu mineralnost omiškog kraja.
               </p>
-              <ul class="wcard__notes" data-i18n-aria="wcard.notes.aria">
-                <li data-i18n="wcard.mirabella.n1">Egzotično voće</li>
-                <li data-i18n="wcard.mirabella.n2">Mediteransko bilje</li>
-                <li data-i18n="wcard.mirabella.n3">Fina mineralnost</li>
-              </ul>
+              <a href="#" class="wcard__buy js-shop-link" data-i18n="wcard.buy">Kupi odmah</a>
             </div>
             <div class="wcard__foot">
               <div class="wcard__foot-row">
@@ -385,11 +515,7 @@
                 obiteljskom podrumu. Prepoznatljivo po rubinskoj boji i
                 iznimno izražajnom bouquetu.
               </p>
-              <ul class="wcard__notes" data-i18n-aria="wcard.notes.aria">
-                <li data-i18n="wcard.ruza.n1">Rubinska boja</li>
-                <li data-i18n="wcard.ruza.n2">Izražajni bouquet</li>
-                <li data-i18n="wcard.ruza.n3">6 mj. hrast</li>
-              </ul>
+              <a href="#" class="wcard__buy js-shop-link" data-i18n="wcard.buy">Kupi odmah</a>
             </div>
             <div class="wcard__foot">
               <div class="wcard__foot-row">
@@ -424,11 +550,7 @@
                 recept staroga omiškog prošeka. Bogat, raskošan, s aromama sušenog
                 voća, meda i tradicije.
               </p>
-              <ul class="wcard__notes" data-i18n-aria="wcard.notes.aria">
-                <li data-i18n="wcard.prosek.n1">Sušeno voće &amp; med</li>
-                <li data-i18n="wcard.prosek.n2">Tradicija &amp; toplina</li>
-                <li data-i18n="wcard.prosek.n3">Tribidrag &amp; Omiška ruža</li>
-              </ul>
+              <a href="#" class="wcard__buy js-shop-link" data-i18n="wcard.buy">Kupi odmah</a>
             </div>
             <div class="wcard__foot">
               <div class="wcard__foot-row">
@@ -555,126 +677,6 @@
           <strong data-i18n="family.cheers">Živjeli!</strong>
         </div>
       </div>
-    </section>
-
-    <!-- ─── VINSKE TURE ─── -->
-    <section class="tours" id="ture" aria-labelledby="tours-h">
-
-      <div class="container tours__top reveal">
-        <div class="tours__top-text">
-          <p class="eyebrow eyebrow--light" data-i18n="tours.eyebrow">Vinske ture</p>
-          <h2 class="h2 h2--light" id="tours-h" data-i18n-html="tours.h2">Zakoračite u naš<br><em>svijet</em></h2>
-          <p class="tours__intro" data-i18n="tours.intro">
-            Osmislili smo dvije ture kao putovanje kroz povijest, obiteljsku
-            tradiciju i predivan krajolik u kojem stvaramo naša vina. Sve ture
-            organiziraju se uz prethodnu najavu.
-          </p>
-        </div>
-      </div>
-
-      <div class="container tours__cards">
-
-        <article class="tcard tcard--gastro reveal" aria-labelledby="tour1-h">
-          <div class="tcard__body">
-            <div class="tcard__num" aria-hidden="true">01</div>
-            <div class="tcard__badge" data-i18n="tour1.badge">Wine &amp; Gastro</div>
-            <h3 class="tcard__name" id="tour1-h" data-i18n="tour1.name">Ekskluzivna rustikalna dalmatinska vinska tura</h3>
-            <p class="tcard__desc" data-i18n="tour1.desc">
-              Trosatna avantura od trsa do dalmatinskog stola – od vinograda u Svinišću do večere u konobi.
-            </p>
-            <ul class="tcard__list">
-              <li><span class="tcard__dot" aria-hidden="true"></span><span data-i18n-html="tour1.li1"><strong>Degustacija</strong> – 5 rakija i likera s dalmatinskim soparnikom</span></li>
-              <li><span class="tcard__dot" aria-hidden="true"></span><span data-i18n-html="tour1.li2"><strong>Večera</strong> – pršut, sir, teleći gulaš, štrudla</span></li>
-              <li><span class="tcard__dot" aria-hidden="true"></span><span data-i18n-html="tour1.li3"><strong>Vinska selekcija</strong> – bijelo, dva crna i Prošek</span></li>
-              <li><span class="tcard__dot" aria-hidden="true"></span><span data-i18n="tour1.li4">Opcija: živa glazba na zahtjev</span></li>
-            </ul>
-            <div class="tcard__footer">
-              <div class="tcard__meta">
-                <div class="tcard__meta-item">
-                  <span class="tcard__meta-label" data-i18n="label.duration">Trajanje</span>
-                  <span class="tcard__meta-val" data-i18n="tour1.duration">3 sata</span>
-                </div>
-                <div class="tcard__meta-item">
-                  <span class="tcard__meta-label" data-i18n="label.minGroup">Min. grupa</span>
-                  <span class="tcard__meta-val" data-i18n="tour1.minGroup">6 osoba</span>
-                </div>
-              </div>
-              <div class="tcard__price">
-                <span class="tcard__price-num">110 €</span>
-                <span class="tcard__price-label" data-i18n="label.perPerson">po osobi</span>
-              </div>
-            </div>
-          </div>
-          <div class="tcard__image" aria-hidden="true">
-            <img
-              src="images/tour-rustikalna-vinograd.png"
-              data-i18n-alt="tour1.alt"
-              alt="Degustacija vina i soparnika među vinovim trsovima Vinarije Mimica"
-              class="tcard__image-photo"
-              width="1200"
-              height="900"
-              loading="lazy"
-              decoding="async"
-            >
-            <div class="tcard__image-overlay"></div>
-          </div>
-        </article>
-
-        <article class="tcard tcard--rev reveal reveal--delay" aria-labelledby="tour2-h">
-          <div class="tcard__image" aria-hidden="true">
-            <img
-              src="images/tour-outdoor-degustacija.png"
-              data-i18n-alt="tour2.alt"
-              alt="Vinogradi na padinama Omiške Dinare s pogledom na more"
-              class="tcard__image-photo"
-              width="1600"
-              height="1200"
-              loading="lazy"
-              decoding="async"
-            >
-            <div class="tcard__image-overlay"></div>
-          </div>
-          <div class="tcard__body">
-            <div class="tcard__num" aria-hidden="true">02</div>
-            <div class="tcard__badge" data-i18n="tour2.badge">Outdoor degustacija</div>
-            <h3 class="tcard__name" id="tour2-h" data-i18n="tour2.name">Degustacija na strmim padinama Dinare</h3>
-            <p class="tcard__desc" data-i18n="tour2.desc">
-              Na otvorenom, među trsovima na padinama Omiške Dinare – s pogledom koji oduzima dah.
-            </p>
-            <ul class="tcard__list">
-              <li><span class="tcard__dot" aria-hidden="true"></span><span data-i18n-html="tour2.li1"><strong>4 vrhunska vina</strong> i domaće rakije po izboru</span></li>
-              <li><span class="tcard__dot" aria-hidden="true"></span><span data-i18n-html="tour2.li2"><strong>Gastro pratnja</strong> – sirevi, pršut, hrskavi krekeri</span></li>
-              <li><span class="tcard__dot" aria-hidden="true"></span><span data-i18n="tour2.li3">Panoramski pogled na vinograde i Omiš</span></li>
-            </ul>
-            <div class="tcard__footer">
-              <div class="tcard__meta">
-                <div class="tcard__meta-item">
-                  <span class="tcard__meta-label" data-i18n="label.duration">Trajanje</span>
-                  <span class="tcard__meta-val" data-i18n="tour2.duration">1,5 sati</span>
-                </div>
-                <div class="tcard__meta-item">
-                  <span class="tcard__meta-label" data-i18n="label.minGroup">Min. grupa</span>
-                  <span class="tcard__meta-val" data-i18n="tour2.minGroup">5 osoba</span>
-                </div>
-              </div>
-              <div class="tcard__price">
-                <span class="tcard__price-num">40 €</span>
-                <span class="tcard__price-label" data-i18n="label.perPerson">po osobi</span>
-              </div>
-            </div>
-          </div>
-        </article>
-
-      </div>
-
-      <div class="container">
-        <div class="tours__booking reveal">
-          <p data-i18n="tours.booking">Za rezervacije i sve informacije:</p>
-          <a href="tel:+385994130518" class="tours__phone">+385 99 413 0518</a>
-          <span class="tours__contact-name">Marko Mimica</span>
-        </div>
-      </div>
-
     </section>
 
     <!-- ─── PRODAJNA MJESTA ─── -->
@@ -908,7 +910,7 @@
               </div>
               <div class="contact__info-item">
                 <span class="contact__info-label" data-i18n="label.vineyards">Vinogradi</span>
-                <span class="contact__info-val" data-i18n="contact.vineyards">Svinišće, padine Omiške Dinare</span>
+                <span class="contact__info-val" data-i18n="contact.vineyards">Svinišće, Vrisovci</span>
               </div>
             </div>
 
@@ -959,11 +961,11 @@
 
       <nav class="footer__nav" data-i18n-aria="footer.nav.aria">
         <a href="#o-nama" data-i18n="nav.o-nama">O nama</a>
+        <a href="#ture" data-i18n="nav.ture">Vinske ture</a>
         <a href="#zinfandel" data-i18n="footer.zinfandel">Zinfandel</a>
         <a href="#vinogradi" data-i18n="nav.vinogradi">Vinogradi</a>
         <a href="#vina" data-i18n="nav.vina">Vina</a>
         <a href="#obitelj" data-i18n="nav.obitelj">Obitelj</a>
-        <a href="#ture" data-i18n="nav.ture">Vinske ture</a>
         <a href="#prodajna-mjesta" data-i18n="nav.prodajna">Prodajna mjesta</a>
         <a href="#galerija" data-i18n="nav.galerija">Galerija</a>
         <a href="#kontakt" data-i18n="nav.kontakt">Kontakt</a>
@@ -971,6 +973,11 @@
       </nav>
 
       <div class="footer__legal">
+        <p class="footer__company" data-i18n-html="footer.company">
+          zin1714 d.o.o.<br>
+          Domovinskog rata 1, 21310 Omiš<br>
+          OIB: 94084803044
+        </p>
         <p data-i18n="footer.copyright">&copy; 2026 Vinarija Mimica, Omiš. Sva prava pridržana.</p>
         <p class="footer__age" data-i18n="footer.age">Konzumacija alkohola zabranjena je osobama mlađim od 18 godina.</p>
       </div>

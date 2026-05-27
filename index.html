@@ -68,8 +68,8 @@
     <ul class="nav__list" role="list">
       <li><a href="#o-nama"          class="nav__link" data-i18n="nav.o-nama">O nama</a></li>
       <li><a href="#ture"            class="nav__link" data-i18n="nav.ture">Vinske ture</a></li>
-      <li><a href="#vinogradi"       class="nav__link" data-i18n="nav.vinogradi">Vinogradi</a></li>
       <li><a href="#vina"            class="nav__link" data-i18n="nav.vina">Vina</a></li>
+      <li><a href="#vinogradi"       class="nav__link" data-i18n="nav.vinogradi">Vinogradi</a></li>
       <li><a href="#obitelj"         class="nav__link" data-i18n="nav.obitelj">Obitelj</a></li>
       <li><a href="#prodajna-mjesta" class="nav__link" data-i18n="nav.prodajna">Prodajna mjesta</a></li>
       <li><a href="#galerija"        class="nav__link" data-i18n="nav.galerija">Galerija</a></li>
@@ -108,8 +108,7 @@
             >
           </h1>
           <p class="hero__sub" data-i18n="hero.sub">
-            Tradicija zapisana od 1714. Autohtone dalmatinske sorte,
-            ručna berba i vina koja nose dušu omiškog vinogorja.
+            Tradicija zapisana od 1714. Autohtone dalmatinske sorte i vina koja nose dušu omiškog vinogorja.
           </p>
           <div class="hero__actions">
             <a href="#" class="btn btn--gold btn--lg js-shop-link" data-i18n="hero.btn.shop">Naručite naša vina</a>
@@ -171,20 +170,6 @@
                 pod nazivom <strong>Zinfandel</strong>.
               </p>
             </div>
-            <div class="about__stats">
-              <div class="about__stat">
-                <strong class="about__stat-num">1714</strong>
-                <span class="about__stat-label" data-i18n="about.stat1">Godina zapisa</span>
-              </div>
-              <div class="about__stat">
-                <strong class="about__stat-num">4</strong>
-                <span class="about__stat-label" data-i18n="about.stat2">Vina</span>
-              </div>
-              <div class="about__stat">
-                <strong class="about__stat-num">100%</strong>
-                <span class="about__stat-label" data-i18n="about.stat3">Ručna berba</span>
-              </div>
-            </div>
           </div>
 
         </div>
@@ -239,33 +224,144 @@
               </div>
             </div>
           </div>
-          <div class="tcard__image" aria-hidden="true">
-            <img
-              src="images/tour-rustikalna-vinograd.png"
-              data-i18n-alt="tour1.alt"
-              alt="Degustacija vina i soparnika među vinovim trsovima Vinarije Mimica"
-              class="tcard__image-photo"
-              width="1200"
-              height="900"
-              loading="lazy"
-              decoding="async"
-            >
+          <div class="tcard__image" role="region" data-i18n-aria="tour1.carousel.region">
+            <div class="tcard__carousel" id="tourGastroCarousel" tabindex="0">
+              <div class="tcard__carousel-track" aria-live="polite">
+                <figure class="tcard__slide is-active">
+                  <img
+                    src="images/tour-rustikalna-vinograd.png"
+                    data-i18n-alt="tour1.alt"
+                    alt="Degustacija vina i soparnika među vinovim trsovima Vinarije Mimica"
+                    class="tcard__image-photo"
+                    width="1200"
+                    height="900"
+                    decoding="async"
+                  >
+                </figure>
+                <figure class="tcard__slide">
+                  <img
+                    src="images/tour-gastro-konoba.png"
+                    data-i18n-alt="tour1.alt2"
+                    alt="Rustikalna konoba pripremljena za goste"
+                    class="tcard__image-photo"
+                    width="1200"
+                    height="900"
+                    loading="lazy"
+                    decoding="async"
+                  >
+                </figure>
+                <figure class="tcard__slide">
+                  <img
+                    src="images/tour-gastro-soparnik.png"
+                    data-i18n-alt="tour1.alt3"
+                    alt="Tradicionalni dalmatinski soparnik"
+                    class="tcard__image-photo"
+                    width="1200"
+                    height="900"
+                    loading="lazy"
+                    decoding="async"
+                  >
+                </figure>
+                <figure class="tcard__slide">
+                  <img
+                    src="images/tour-gastro-vecera.png"
+                    data-i18n-alt="tour1.alt4"
+                    alt="Večera i degustacija u konobi"
+                    class="tcard__image-photo"
+                    width="1200"
+                    height="900"
+                    loading="lazy"
+                    decoding="async"
+                  >
+                </figure>
+                <figure class="tcard__slide">
+                  <img
+                    src="images/tour-gastro-podrum.png"
+                    data-i18n-alt="tour1.alt5"
+                    alt="Bačve u podrumu Vinarije Mimica"
+                    class="tcard__image-photo"
+                    width="1200"
+                    height="900"
+                    loading="lazy"
+                    decoding="async"
+                  >
+                </figure>
+              </div>
+              <button type="button" class="tcard__carousel-btn tcard__carousel-btn--prev" data-i18n-aria="tour1.carousel.prev" aria-label="Prethodna fotografija">&#8592;</button>
+              <button type="button" class="tcard__carousel-btn tcard__carousel-btn--next" data-i18n-aria="tour1.carousel.next" aria-label="Sljedeća fotografija">&#8594;</button>
+              <div class="tcard__carousel-dots" role="tablist" aria-label="Fotografije ture">
+                <button type="button" class="tcard__carousel-dot is-active" data-slide="0" aria-label="1 / 5" aria-selected="true"></button>
+                <button type="button" class="tcard__carousel-dot" data-slide="1" aria-label="2 / 5" aria-selected="false"></button>
+                <button type="button" class="tcard__carousel-dot" data-slide="2" aria-label="3 / 5" aria-selected="false"></button>
+                <button type="button" class="tcard__carousel-dot" data-slide="3" aria-label="4 / 5" aria-selected="false"></button>
+                <button type="button" class="tcard__carousel-dot" data-slide="4" aria-label="5 / 5" aria-selected="false"></button>
+              </div>
+            </div>
             <div class="tcard__image-overlay"></div>
           </div>
         </article>
 
         <article class="tcard tcard--rev" aria-labelledby="tour2-h">
-          <div class="tcard__image" aria-hidden="true">
-            <img
-              src="images/tour-outdoor-degustacija.png"
-              data-i18n-alt="tour2.alt"
-              alt="Vinogradi na padinama Omiške Dinare s pogledom na more"
-              class="tcard__image-photo"
-              width="1600"
-              height="1200"
-              loading="lazy"
-              decoding="async"
-            >
+          <div class="tcard__image" role="region" data-i18n-aria="tour2.carousel.region">
+            <div class="tcard__carousel" id="tourOutdoorCarousel" tabindex="0">
+              <div class="tcard__carousel-track" aria-live="polite">
+                <figure class="tcard__slide is-active">
+                  <img
+                    src="images/tour-outdoor-grupa.png"
+                    data-i18n-alt="tour2.alt"
+                    alt="Grupa gostiju na degustaciji u vinogradu Vinarije Mimica"
+                    class="tcard__image-photo"
+                    width="1200"
+                    height="900"
+                    decoding="async"
+                  >
+                </figure>
+                <figure class="tcard__slide">
+                  <img
+                    src="images/tour-outdoor-trsovi.png"
+                    data-i18n-alt="tour2.alt2"
+                    alt="Gosti među vinovim trsovima na padinama Omiške Dinare"
+                    class="tcard__image-photo"
+                    width="1200"
+                    height="900"
+                    loading="lazy"
+                    decoding="async"
+                  >
+                </figure>
+                <figure class="tcard__slide">
+                  <img
+                    src="images/tour-outdoor-degustacija.png"
+                    data-i18n-alt="tour2.alt3"
+                    alt="Degustacija vina i rakija na otvorenom među trsovima"
+                    class="tcard__image-photo"
+                    width="1200"
+                    height="900"
+                    loading="lazy"
+                    decoding="async"
+                  >
+                </figure>
+                <figure class="tcard__slide">
+                  <img
+                    src="images/tour-outdoor-padine.png"
+                    data-i18n-alt="tour2.alt4"
+                    alt="Vinogradi na padinama Omiške Dinare s pogledom na more"
+                    class="tcard__image-photo"
+                    width="1200"
+                    height="900"
+                    loading="lazy"
+                    decoding="async"
+                  >
+                </figure>
+              </div>
+              <button type="button" class="tcard__carousel-btn tcard__carousel-btn--prev" data-i18n-aria="tour2.carousel.prev" aria-label="Prethodna fotografija">&#8592;</button>
+              <button type="button" class="tcard__carousel-btn tcard__carousel-btn--next" data-i18n-aria="tour2.carousel.next" aria-label="Sljedeća fotografija">&#8594;</button>
+              <div class="tcard__carousel-dots" role="tablist" aria-label="Fotografije ture">
+                <button type="button" class="tcard__carousel-dot is-active" data-slide="0" aria-label="1 / 4" aria-selected="true"></button>
+                <button type="button" class="tcard__carousel-dot" data-slide="1" aria-label="2 / 4" aria-selected="false"></button>
+                <button type="button" class="tcard__carousel-dot" data-slide="2" aria-label="3 / 4" aria-selected="false"></button>
+                <button type="button" class="tcard__carousel-dot" data-slide="3" aria-label="4 / 4" aria-selected="false"></button>
+              </div>
+            </div>
             <div class="tcard__image-overlay"></div>
           </div>
           <div class="tcard__body">
@@ -438,71 +534,6 @@
       </div>
     </section>
 
-    <!-- ─── VINOGRADI ─── -->
-    <section class="vineyards" id="vinogradi" aria-labelledby="vineyards-h">
-      <div class="vineyards__media" aria-hidden="true">
-        <picture>
-          <source
-            type="image/webp"
-            srcset="
-              images/vineyards-omiska-dinara.webp 1920w,
-              images/vineyards-omiska-dinara@2x.webp 2560w
-            "
-            sizes="100vw"
-          >
-          <img
-            src="images/vineyards-omiska-dinara.jpg"
-            srcset="
-              images/vineyards-omiska-dinara.jpg 1920w,
-              images/vineyards-omiska-dinara@2x.jpg 2560w
-            "
-            sizes="100vw"
-            data-i18n-alt="vineyards.alt"
-            alt="Strme padine vinograda Vinarije Mimica na Omiškoj Dinari"
-            class="vineyards__bg"
-            width="1920"
-            height="1440"
-            decoding="async"
-            fetchpriority="high"
-          >
-        </picture>
-        <div class="vineyards__overlay"></div>
-      </div>
-      <div class="container vineyards__container">
-        <div class="vineyards__content reveal">
-          <p class="eyebrow eyebrow--light" data-i18n="vineyards.eyebrow">Naši vinogradi</p>
-          <h2 class="h2 h2--light" id="vineyards-h" data-i18n-html="vineyards.h2">Strme padine<br><em>Omiške Dinare</em></h2>
-          <p class="vineyards__body" data-i18n-html="vineyards.p1">
-            Vinogradi vinarije Mimica smješteni su na strmim južnim padinama Omiške Dinare,
-            na položaju koji je idealan za proizvodnju vrhunskih vina. Zbog ovog
-            iznimnog mikrolokaliteta, naša je loza izložena
-            <strong>trostrukoj insolaciji</strong> te savršenim klimatskim uvjetima –
-            hladnim noćima i toplim danima.
-          </p>
-          <p class="vineyards__body" data-i18n="vineyards.p2">
-            Prinosi po trsu su nam namjerno izuzetno niski, ali su zato vina
-            koja stvaramo prepoznatljiva, snažna i robusna. Berbu obavljamo
-            isključivo ručno, kako bismo bili potpuno sigurni da biramo
-            samo najboljeg grožđa.
-          </p>
-          <div class="vineyards__features">
-            <div class="vf">
-              <strong class="vf__num">3×</strong>
-              <span class="vf__label" data-i18n="vineyards.vf1">Insolacija</span>
-            </div>
-            <div class="vf">
-              <strong class="vf__num">Jug</strong>
-              <span class="vf__label" data-i18n="vineyards.vf2">Ekspozicija</span>
-            </div>
-            <div class="vf">
-              <strong class="vf__num" data-i18n="vineyards.vf3val">Ručno</strong>
-              <span class="vf__label" data-i18n="vineyards.vf3">Berba</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
     <!-- ─── VINA ─── -->
     <section class="wines" id="vina" aria-labelledby="wines-h">
 
@@ -537,7 +568,7 @@
               <div class="wines__featured-meta">
                 <div class="wines__meta-item">
                   <span class="wines__meta-label" data-i18n="label.temp">Temperatura</span>
-                  <span class="wines__meta-val">16–18 °C</span>
+                  <span class="wines__meta-val">18 °C</span>
                 </div>
                 <div class="wines__meta-item">
                   <span class="wines__meta-label" data-i18n="label.pairing">Idealno uz</span>
@@ -590,7 +621,7 @@
             <div class="wcard__foot">
               <div class="wcard__foot-row">
                 <span class="wcard__foot-label" data-i18n="label.temp">Temperatura</span>
-                <span class="wcard__foot-val">8–10 °C</span>
+                <span class="wcard__foot-val">12 °C</span>
               </div>
               <div class="wcard__foot-row">
                 <span class="wcard__foot-label" data-i18n="label.pairing">Idealno uz</span>
@@ -660,7 +691,7 @@
             <div class="wcard__foot">
               <div class="wcard__foot-row">
                 <span class="wcard__foot-label" data-i18n="label.temp">Temperatura</span>
-                <span class="wcard__foot-val">12–14 °C</span>
+                <span class="wcard__foot-val">18 °C</span>
               </div>
               <div class="wcard__foot-row">
                 <span class="wcard__foot-label" data-i18n="label.pairing">Idealno uz</span>
@@ -676,6 +707,71 @@
         </div>
       </div>
 
+    </section>
+
+    <!-- ─── VINOGRADI ─── -->
+    <section class="vineyards" id="vinogradi" aria-labelledby="vineyards-h">
+      <div class="vineyards__media" aria-hidden="true">
+        <picture>
+          <source
+            type="image/webp"
+            srcset="
+              images/vineyards-omiska-dinara.webp 1920w,
+              images/vineyards-omiska-dinara@2x.webp 2560w
+            "
+            sizes="100vw"
+          >
+          <img
+            src="images/vineyards-omiska-dinara.jpg"
+            srcset="
+              images/vineyards-omiska-dinara.jpg 1920w,
+              images/vineyards-omiska-dinara@2x.jpg 2560w
+            "
+            sizes="100vw"
+            data-i18n-alt="vineyards.alt"
+            alt="Strme padine vinograda Vinarije Mimica na Omiškoj Dinari"
+            class="vineyards__bg"
+            width="1920"
+            height="1440"
+            decoding="async"
+            fetchpriority="high"
+          >
+        </picture>
+        <div class="vineyards__overlay"></div>
+      </div>
+      <div class="container vineyards__container">
+        <div class="vineyards__content reveal">
+          <p class="eyebrow eyebrow--light" data-i18n="vineyards.eyebrow">Naši vinogradi</p>
+          <h2 class="h2 h2--light" id="vineyards-h" data-i18n-html="vineyards.h2">Strme padine<br><em>Omiške Dinare</em></h2>
+          <p class="vineyards__body" data-i18n-html="vineyards.p1">
+            Vinogradi vinarije Mimica smješteni su na strmim južnim padinama Omiške Dinare,
+            na položaju koji je idealan za proizvodnju vrhunskih vina. Zbog ovog
+            iznimnog mikrolokaliteta, naša je loza izložena
+            <strong>trostrukoj insolaciji</strong> te savršenim klimatskim uvjetima –
+            hladnim noćima i toplim danima.
+          </p>
+          <p class="vineyards__body" data-i18n="vineyards.p2">
+            Prinosi po trsu su nam namjerno izuzetno niski, ali su zato vina
+            koja stvaramo prepoznatljiva, snažna i robusna. Berbu obavljamo
+            isključivo ručno, kako bismo bili potpuno sigurni da biramo
+            samo najboljeg grožđa.
+          </p>
+          <div class="vineyards__features">
+            <div class="vf">
+              <strong class="vf__num">3×</strong>
+              <span class="vf__label" data-i18n="vineyards.vf1">Insolacija</span>
+            </div>
+            <div class="vf">
+              <strong class="vf__num">Jug</strong>
+              <span class="vf__label" data-i18n="vineyards.vf2">Ekspozicija</span>
+            </div>
+            <div class="vf">
+              <strong class="vf__num" data-i18n="vineyards.vf3val">Ručno</strong>
+              <span class="vf__label" data-i18n="vineyards.vf3">Berba</span>
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
 
     <!-- ─── OBITELJ ─── -->
@@ -775,7 +871,7 @@
       <div class="container">
         <div class="family__tagline reveal">
           <p data-i18n="family.tagline">
-            Kada otvorite bocu vina Mimica, znajte da iza nje ne stoji korporacija,
+            Kada otvorite bocu naše vinarije, znajte da iza nje ne stoji korporacija,
             već jedna obitelj. Nikšino iskustvo, Markova predanost u podrumu
             i Petrina briga o svakom detalju utkani su u svaku kap.
           </p>
@@ -1074,8 +1170,8 @@
         <a href="#o-nama" data-i18n="nav.o-nama">O nama</a>
         <a href="#ture" data-i18n="nav.ture">Vinske ture</a>
         <a href="#zinfandel" data-i18n="footer.zinfandel">Zinfandel</a>
-        <a href="#vinogradi" data-i18n="nav.vinogradi">Vinogradi</a>
         <a href="#vina" data-i18n="nav.vina">Vina</a>
+        <a href="#vinogradi" data-i18n="nav.vinogradi">Vinogradi</a>
         <a href="#obitelj" data-i18n="nav.obitelj">Obitelj</a>
         <a href="#prodajna-mjesta" data-i18n="nav.prodajna">Prodajna mjesta</a>
         <a href="#galerija" data-i18n="nav.galerija">Galerija</a>

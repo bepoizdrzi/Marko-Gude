@@ -833,6 +833,15 @@ address { font-style: normal; }
   user-select: none;
 }
 
+@media (min-width: 901px) {
+  .zin__deco {
+    right: clamp(40px, 6vw, 100px);
+    font-size: clamp(160px, 21vw, 300px);
+    font-weight: 300;
+    color: rgba(46, 31, 20, 0.11);
+  }
+}
+
 .zin__inner {
   max-width: var(--max-w);
   margin-inline: auto;
@@ -1690,11 +1699,115 @@ address { font-style: normal; }
 .tcard:hover .tcard__image img,
 .tcard:hover .tcard__image-photo { transform: scale(1.04); }
 
-/* Rustikalna tura – vineyard tasting photo */
+/* Tour image carousels */
+.tcard--gastro .tcard__carousel,
+.tcard--rev .tcard__carousel {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+.tcard__carousel-track {
+  position: absolute;
+  inset: 0;
+}
+.tcard__slide {
+  position: absolute;
+  inset: 0;
+  margin: 0;
+  opacity: 0;
+  transition: opacity 0.7s var(--ease);
+  pointer-events: none;
+}
+.tcard__slide.is-active {
+  opacity: 1;
+  pointer-events: auto;
+  z-index: 1;
+}
 .tcard--gastro .tcard__image-photo {
+  object-position: center center;
+}
+.tcard--gastro .tcard__slide:first-child .tcard__image-photo {
   object-position: center 58%;
 }
+.tcard--gastro .tcard__slide:nth-child(4) .tcard__image-photo {
+  object-position: center 40%;
+}
+.tcard--gastro:hover .tcard__image-photo {
+  transform: none;
+}
+.tcard--gastro:hover .tcard__slide.is-active .tcard__image-photo {
+  transform: scale(1.04);
+}
+.tcard--rev .tcard__image-photo {
+  object-position: center 42%;
+}
+.tcard--rev .tcard__slide:first-child .tcard__image-photo {
+  object-position: center 55%;
+}
+.tcard--rev .tcard__slide:nth-child(3) .tcard__image-photo {
+  object-position: center 35%;
+}
+.tcard--rev:hover .tcard__image-photo {
+  transform: none;
+}
+.tcard--rev:hover .tcard__slide.is-active .tcard__image-photo {
+  transform: scale(1.04);
+}
+
+.tcard__carousel-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 3;
+  width: 40px;
+  height: 40px;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  border-radius: 50%;
+  background: rgba(46, 31, 20, 0.55);
+  color: #fff;
+  font-size: 18px;
+  line-height: 1;
+  cursor: pointer;
+  transition: background var(--tr), border-color var(--tr);
+}
+.tcard__carousel-btn:hover {
+  background: rgba(46, 31, 20, 0.85);
+  border-color: var(--gold);
+}
+.tcard__carousel-btn--prev { left: 12px; }
+.tcard__carousel-btn--next { right: 12px; }
+
+.tcard__carousel-dots {
+  position: absolute;
+  bottom: 14px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 3;
+  display: flex;
+  gap: 8px;
+}
+.tcard__carousel-dot {
+  width: 8px;
+  height: 8px;
+  padding: 0;
+  border: none;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.35);
+  cursor: pointer;
+  transition: background var(--tr), transform var(--tr);
+}
+.tcard__carousel-dot.is-active {
+  background: var(--gold);
+  transform: scale(1.15);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tcard__slide { transition: none; }
+}
+
 .tcard--gastro .tcard__image-overlay {
+  z-index: 2;
+  pointer-events: none;
   background:
     linear-gradient(
       to right,
@@ -1720,14 +1833,21 @@ address { font-style: normal; }
   );
 }
 .tcard--rev .tcard__image-overlay {
-  background: linear-gradient(
-    to left,
-    rgba(20, 12, 8, 0.28) 0%,
-    rgba(20, 12, 8, 0.05) 100%
-  );
-}
-.tcard--rev .tcard__image-photo {
-  object-position: center 42%;
+  z-index: 2;
+  pointer-events: none;
+  background:
+    linear-gradient(
+      to left,
+      rgba(46, 31, 20, 0.78) 0%,
+      rgba(46, 31, 20, 0.28) 34%,
+      rgba(46, 31, 20, 0.06) 68%,
+      transparent 100%
+    ),
+    linear-gradient(
+      to top,
+      rgba(46, 31, 20, 0.42) 0%,
+      transparent 48%
+    );
 }
 
 .tours__booking {
@@ -3398,11 +3518,16 @@ address { font-style: normal; }
   .tours__top .h2 { font-size: clamp(28px, 8vw, 40px); }
   .tcard { grid-template-columns: 1fr; min-height: auto; }
   .tcard__image { aspect-ratio: 16 / 6; order: -1 !important; min-height: auto; }
-  .tcard--gastro .tcard__image {
+  .tcard--gastro .tcard__image,
+  .tcard--rev .tcard__image {
     aspect-ratio: 16 / 10;
     min-height: 220px;
   }
-  .tcard--gastro .tcard__image-photo { object-position: center 62%; }
+  .tcard--gastro .tcard__slide:first-child .tcard__image-photo { object-position: center 62%; }
+  .tcard--rev .tcard__slide:first-child .tcard__image-photo { object-position: center 58%; }
+  .tcard__carousel-btn { width: 36px; height: 36px; font-size: 16px; }
+  .tcard__carousel-btn--prev { left: 8px; }
+  .tcard__carousel-btn--next { right: 8px; }
   .tcard__body { padding: 20px; }
   .tcard__num { font-size: 56px; top: 12px; right: 14px; }
   .tcard__name { font-size: 22px; }

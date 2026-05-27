@@ -375,3 +375,125 @@ const sectionObserver = new IntersectionObserver(
 );
 
 sections.forEach(s => sectionObserver.observe(s));
+
+
+/* ─────────────────────────────────────────
+   TOUR CARDS – synced image carousels
+   ───────────────────────────────────────── */
+const TOUR_CAROUSEL_INTERVAL_MS = 5000;
+
+function createTourCarousel(root) {
+  const slides = root.querySelectorAll('.tcard__slide');
+  const dots   = root.querySelectorAll('.tcard__carousel-dot');
+  const prevBtn = root.querySelector('.tcard__carousel-btn--prev');
+  const nextBtn = root.querySelector('.tcard__carousel-btn--next');
+  const total = slides.length;
+
+  function dotLabel(i) {
+    return `${i + 1} / ${total}`;
+  }
+
+  function goTo(step) {
+    const index = ((step % total) + total) % total;
+    slides.forEach((slide, n) => slide.classList.toggle('is-active', n === index));
+    dots.forEach((dot, n) => {
+      const active = n === index;
+      dot.classList.toggle('is-active', active);
+      dot.setAttribute('aria-selected', String(active));
+      dot.setAttribute('aria-label', dotLabel(n));
+    });
+    return index;
+  }
+
+  return { root, total, prevBtn, nextBtn, dots, goTo };
+}
+
+function initSyncedTourCarousels() {
+  const roots = ['#tourGastroCarousel', '#tourOutdoorCarousel']
+    .map(id => document.querySelector(id))
+    .filter(Boolean);
+
+  if (!roots.length) return;
+
+  const carousels = roots.map(createTourCarousel);
+  let masterStep = 0;
+  let timer = null;
+  let pauseDepth = 0;
+  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function applyStep(step) {
+    masterStep = step;
+    carousels.forEach(c => c.goTo(step));
+  }
+
+  function advance(dir) {
+    applyStep(masterStep + dir);
+  }
+
+  function stopAuto() {
+    if (timer) {
+      clearInterval(timer);
+      timer = null;
+    }
+  }
+
+  function startAuto() {
+    if (reducedMotion || pauseDepth > 0) return;
+    stopAuto();
+    timer = setInterval(() => advance(1), TOUR_CAROUSEL_INTERVAL_MS);
+  }
+
+  function pause() {
+    pauseDepth += 1;
+    stopAuto();
+  }
+
+  function resume() {
+    pauseDepth = Math.max(0, pauseDepth - 1);
+    if (pauseDepth === 0) startAuto();
+  }
+
+  function onInteract(dir) {
+    advance(dir);
+    stopAuto();
+    startAuto();
+  }
+
+  function onDot(step) {
+    applyStep(step);
+    stopAuto();
+    startAuto();
+  }
+
+  carousels.forEach(({ root, prevBtn, nextBtn, dots }) => {
+    prevBtn.addEventListener('click', () => onInteract(-1));
+    nextBtn.addEventListener('click', () => onInteract(1));
+
+    dots.forEach(dot => {
+      dot.addEventListener('click', () => onDot(Number(dot.dataset.slide)));
+    });
+
+    root.addEventListener('keydown', e => {
+      if (e.key === 'ArrowLeft') {
+        e.preventDefault();
+        onInteract(-1);
+      }
+      if (e.key === 'ArrowRight') {
+        e.preventDefault();
+        onInteract(1);
+      }
+    });
+
+    root.addEventListener('mouseenter', pause);
+    root.addEventListener('mouseleave', resume);
+    root.addEventListener('focusin', pause);
+    root.addEventListener('focusout', e => {
+      if (!root.contains(e.relatedTarget)) resume();
+    });
+  });
+
+  applyStep(0);
+  startAuto();
+}
+
+initSyncedTourCarousels();

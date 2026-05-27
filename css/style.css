@@ -1573,12 +1573,12 @@ address { font-style: normal; }
 
 .tcard__name {
   font-family: var(--serif);
-  font-size: clamp(19px, 2.1vw, 26px);
-  font-weight: 400;
-  color: var(--earth);
-  line-height: 1.2;
-  letter-spacing: -0.01em;
-  margin-bottom: 12px;
+  font-size: clamp(24px, 2.6vw, 34px);
+  font-weight: 500;
+  color: var(--wine);
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  margin-bottom: 14px;
 }
 
 .tcard__desc {
@@ -3405,7 +3405,7 @@ address { font-style: normal; }
   .tcard--gastro .tcard__image-photo { object-position: center 62%; }
   .tcard__body { padding: 20px; }
   .tcard__num { font-size: 56px; top: 12px; right: 14px; }
-  .tcard__name { font-size: 19px; }
+  .tcard__name { font-size: 22px; }
   .tcard__desc { font-size: 13.5px; margin-bottom: 12px; }
   .tcard__list li { font-size: 13px; }
   .tcard__footer { gap: 12px; }

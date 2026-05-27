@@ -293,6 +293,44 @@ window.addEventListener('scroll', revealInView, { passive: true });
 
 
 /* ─────────────────────────────────────────
+   SECTION FLOW – wine-like ulaz (#o-nama, #ture)
+   ───────────────────────────────────────── */
+document.documentElement.classList.add('flow-enabled');
+
+const flowSections = document.querySelectorAll('#o-nama, #ture');
+const flowObserver = new IntersectionObserver(
+  entries => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) return;
+      entry.target.classList.add('is-inview');
+      flowObserver.unobserve(entry.target);
+    });
+  },
+  {
+    threshold: 0.12,
+    rootMargin: '0px 0px -8% 0px',
+  }
+);
+
+function flowInView() {
+  const vh = window.innerHeight || document.documentElement.clientHeight;
+  flowSections.forEach(section => {
+    if (section.classList.contains('is-inview')) return;
+    const rect = section.getBoundingClientRect();
+    if (rect.top < vh * 0.88 && rect.bottom > 0) {
+      section.classList.add('is-inview');
+      flowObserver.unobserve(section);
+    }
+  });
+}
+
+flowSections.forEach(section => flowObserver.observe(section));
+flowInView();
+window.addEventListener('load', flowInView);
+window.addEventListener('scroll', flowInView, { passive: true });
+
+
+/* ─────────────────────────────────────────
    SMOOTH SCROLL – anchor linkovi
    Kompenzira visinu fiksne navigacije.
    ───────────────────────────────────────── */

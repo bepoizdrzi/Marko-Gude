@@ -9,7 +9,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css?v=12">
+  <link rel="stylesheet" href="css/style.css?v=23">
 </head>
 <body>
 
@@ -18,11 +18,11 @@
     <div class="nav__container">
       <a href="#" class="nav__brand" data-i18n-aria="nav.brand">
         <img
-          src="images/logo-vinarija-mimica.png"
+          src="images/logo-vinarija-mimica.png?v=14"
           alt="Vinarija Mimica"
           class="nav__brand-logo"
-          width="220"
-          height="110"
+          width="265"
+          height="182"
           decoding="async"
         >
       </a>
@@ -95,9 +95,17 @@
 
       <div class="hero__inner">
         <div class="hero__body">
-          <p class="hero__kicker" data-i18n="hero.kicker">Obiteljska butik vinarija &middot; Omiš, Dalmacija</p>
-          <h1 class="hero__heading" data-i18n-html="hero.h1">
-            Od kamena<br>i sunca<br><em>Omiške Dinare</em>
+          <p class="hero__kicker" data-i18n="hero.kicker">Lokalna obiteljska vinarija &middot; Omiš, Dalmacija</p>
+          <h1 class="hero__heading">
+            <img
+              src="images/logo-vinarija-mimica.png?v=14"
+              alt="Vinarija Mimica"
+              class="hero__logo"
+              data-i18n-alt="nav.brand"
+              width="265"
+              height="182"
+              decoding="async"
+            >
           </h1>
           <p class="hero__sub" data-i18n="hero.sub">
             Tradicija zapisana od 1714. Autohtone dalmatinske sorte,
@@ -127,7 +135,7 @@
       <div class="container">
         <div class="about__grid">
 
-          <div class="about__visual reveal">
+          <div class="about__visual">
             <div class="about__photo-wrap">
               <img
                 src="images/gallery/gallery-05.jpg"
@@ -142,7 +150,7 @@
             </div>
           </div>
 
-          <div class="about__content reveal reveal--delay">
+          <div class="about__content">
             <p class="eyebrow" data-i18n="about.eyebrow">O vinariji</p>
             <h2 class="h2" id="about-h" data-i18n-html="about.h2">Lokalna obiteljska<br><em>vinarija</em></h2>
             <div class="about__text">
@@ -186,10 +194,10 @@
     <!-- ─── VINSKE TURE ─── -->
     <section class="tours" id="ture" aria-labelledby="tours-h">
 
-      <div class="container tours__top reveal">
+      <div class="container tours__top">
         <div class="tours__top-text">
-          <p class="eyebrow eyebrow--light" data-i18n="tours.eyebrow">Vinske ture</p>
-          <h2 class="h2 h2--light" id="tours-h" data-i18n-html="tours.h2">Zakoračite u naš<br><em>svijet</em></h2>
+          <p class="eyebrow" data-i18n="tours.eyebrow">Vinske ture</p>
+          <h2 class="h2" id="tours-h" data-i18n-html="tours.h2">Zakoračite u naš<br><em>svijet</em></h2>
           <p class="tours__intro" data-i18n="tours.intro">
             Osmislili smo dvije ture kao putovanje kroz povijest, obiteljsku
             tradiciju i predivan krajolik u kojem stvaramo naša vina. Sve ture
@@ -200,7 +208,7 @@
 
       <div class="container tours__cards">
 
-        <article class="tcard tcard--gastro reveal" aria-labelledby="tour1-h">
+        <article class="tcard tcard--gastro" aria-labelledby="tour1-h">
           <div class="tcard__body">
             <div class="tcard__num" aria-hidden="true">01</div>
             <div class="tcard__badge" data-i18n="tour1.badge">Wine &amp; Gastro</div>
@@ -246,7 +254,7 @@
           </div>
         </article>
 
-        <article class="tcard tcard--rev reveal reveal--delay" aria-labelledby="tour2-h">
+        <article class="tcard tcard--rev" aria-labelledby="tour2-h">
           <div class="tcard__image" aria-hidden="true">
             <img
               src="images/tour-outdoor-degustacija.png"
@@ -294,10 +302,107 @@
       </div>
 
       <div class="container">
-        <div class="tours__booking reveal">
-          <p data-i18n="tours.booking">Za rezervacije i sve informacije:</p>
-          <a href="tel:+385994130518" class="tours__phone">+385 99 413 0518</a>
-          <span class="tours__contact-name">Marko Mimica</span>
+        <div class="tours__reserve">
+          <div class="treserve" id="tourReserve">
+            <header class="treserve__head">
+              <p class="treserve__eyebrow" data-i18n="booking.eyebrow">Rezervacija</p>
+              <h3 class="treserve__title" data-i18n="booking.title">Rezervirajte svoju turu</h3>
+              <p class="treserve__lead" data-i18n="booking.lead">
+                Odaberite datum i pošaljite upit — potvrdit ćemo vam termin u najkraćem mogućem roku.
+              </p>
+            </header>
+
+            <form class="treserve__form" id="tourBookingForm" novalidate>
+              <div class="treserve__row treserve__row--meta">
+                <div class="treserve__field">
+                  <label class="treserve__label" for="tourType" data-i18n="booking.tourLabel">Odabir ture</label>
+                  <select class="treserve__input treserve__select" id="tourType" name="tour" required>
+                    <option value="" disabled selected data-i18n="booking.tourPlaceholder">Odaberite turu</option>
+                    <option value="tour1" data-i18n="booking.tour1">Wine &amp; Gastro — rustikalna tura (3 h)</option>
+                    <option value="tour2" data-i18n="booking.tour2">Outdoor degustacija (1,5 h)</option>
+                  </select>
+                  <span class="treserve__error" id="tourTypeError" role="alert"></span>
+                </div>
+
+                <div class="treserve__field">
+                  <label class="treserve__label" for="tourGuests" data-i18n="booking.guestsLabel">Broj osoba</label>
+                  <select class="treserve__input treserve__select" id="tourGuests" name="guests" required disabled></select>
+                  <p class="treserve__hint" id="tourGuestsHint" data-i18n="booking.guestsHintSelectTour">Prvo odaberite turu</p>
+                  <span class="treserve__error" id="tourGuestsError" role="alert"></span>
+                </div>
+              </div>
+
+              <div class="treserve__field treserve__field--date">
+                <span class="treserve__label" id="tourDateLabel" data-i18n="booking.dateLabel">Datum ture</span>
+                <div class="treserve__calendar" id="tourCalendar" aria-labelledby="tourDateLabel">
+                  <div class="treserve__cal-head">
+                    <button type="button" class="treserve__cal-nav" id="calPrev" data-i18n-aria="booking.calPrev" aria-label="Prethodni mjesec">
+                      <svg width="14" height="14" viewBox="0 0 16 16" aria-hidden="true"><path d="M10 3L5 8l5 5" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>
+                    </button>
+                    <span class="treserve__cal-month" id="calMonthLabel" aria-live="polite"></span>
+                    <button type="button" class="treserve__cal-nav" id="calNext" data-i18n-aria="booking.calNext" aria-label="Sljedeći mjesec">
+                      <svg width="14" height="14" viewBox="0 0 16 16" aria-hidden="true"><path d="M6 3l5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>
+                    </button>
+                  </div>
+                  <div class="treserve__cal-weekdays" id="calWeekdays" aria-hidden="true"></div>
+                  <div class="treserve__cal-days" id="calDays" role="grid" aria-labelledby="tourDateLabel"></div>
+                </div>
+                <input type="hidden" id="tourDate" name="date" required>
+                <p class="treserve__date-picked" id="tourDateDisplay" data-empty="true" data-i18n="booking.dateEmpty">Odaberite datum u kalendaru</p>
+                <span class="treserve__error" id="tourDateError" role="alert"></span>
+              </div>
+
+              <div class="treserve__row treserve__row--contact">
+                <div class="treserve__field">
+                  <label class="treserve__label" for="tourName" data-i18n="booking.nameLabel">Ime i prezime</label>
+                  <input class="treserve__input" type="text" id="tourName" name="name" autocomplete="name" required>
+                  <span class="treserve__error" id="tourNameError" role="alert"></span>
+                </div>
+
+                <div class="treserve__field">
+                  <label class="treserve__label" for="tourEmail" data-i18n="booking.emailLabel">E-mail</label>
+                  <input class="treserve__input" type="email" id="tourEmail" name="email" autocomplete="email" inputmode="email" required>
+                  <span class="treserve__error" id="tourEmailError" role="alert"></span>
+                </div>
+              </div>
+
+              <div class="treserve__field">
+                <label class="treserve__label" for="tourPhone" data-i18n="booking.phoneLabel">Broj telefona</label>
+                <input class="treserve__input" type="tel" id="tourPhone" name="phone" autocomplete="tel" inputmode="tel" required>
+                <span class="treserve__error" id="tourPhoneError" role="alert"></span>
+              </div>
+
+              <div class="treserve__field">
+                <label class="treserve__label" for="tourNotes" data-i18n="booking.notesLabel">Dodatne napomene</label>
+                <textarea class="treserve__input treserve__textarea" id="tourNotes" name="notes" rows="2" data-i18n-placeholder="booking.notesPlaceholder" placeholder="Alergije, posebni zahtjevi, preferirani termin…"></textarea>
+              </div>
+
+              <button type="submit" class="btn btn--gold treserve__submit" id="tourSubmitBtn">
+                <span class="treserve__submit-text" data-i18n="booking.submit">Pošalji rezervaciju</span>
+                <span class="treserve__submit-loading" hidden aria-hidden="true">
+                  <span class="treserve__spinner"></span>
+                  <span data-i18n="booking.sending">Slanje…</span>
+                </span>
+              </button>
+            </form>
+
+            <div class="treserve__success" id="tourBookingSuccess" hidden>
+              <div class="treserve__success-icon" aria-hidden="true">
+                <svg width="32" height="32" viewBox="0 0 32 32" fill="none"><circle cx="16" cy="16" r="15" stroke="currentColor" stroke-width="1.5"/><path d="M9 16l5 5 9-10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </div>
+              <p class="treserve__success-title" data-i18n="booking.successTitle">Hvala na upitu!</p>
+              <p class="treserve__success-text" data-i18n="booking.successText">
+                Vlasnik će vam se uskoro javiti te potvrditi ili odbiti rezervaciju.
+              </p>
+              <button type="button" class="btn btn--outline treserve__again" id="tourBookingAgain" data-i18n="booking.again">Nova rezervacija</button>
+            </div>
+          </div>
+
+          <div class="tours__booking">
+            <p data-i18n="tours.booking">Za rezervacije i sve informacije:</p>
+            <a href="tel:+385994130518" class="tours__phone">+385 99 413 0518</a>
+            <span class="tours__contact-name">Marko Mimica</span>
+          </div>
         </div>
       </div>
 
@@ -308,8 +413,8 @@
       <div class="zin__deco" aria-hidden="true">2001</div>
       <div class="zin__inner">
         <div class="zin__text reveal">
-          <p class="eyebrow eyebrow--light" data-i18n="zin.eyebrow">Priča o Zinfandelu</p>
-          <h2 class="h2 h2--light" id="zin-h" data-i18n-html="zin.h2">Dalmacija je<br><em>rodila Zinfandel</em></h2>
+          <p class="eyebrow" data-i18n="zin.eyebrow">Priča o Zinfandelu</p>
+          <h2 class="h2" id="zin-h" data-i18n-html="zin.h2">Dalmacija je<br><em>rodila Zinfandel</em></h2>
           <p class="zin__body" data-i18n="zin.p1">
             Dugi niz godina podrijetlo Zinfandela bilo je obavijeno tajnom te se
             smatralo da je to jedinstvena, izvorna američka sorta. Međutim, znanstvenici
@@ -863,8 +968,8 @@
       <div class="container">
 
         <header class="contact__header reveal">
-          <p class="eyebrow eyebrow--light" data-i18n="contact.eyebrow">Kontakt</p>
-          <h2 class="h2 h2--light" id="contact-h" data-i18n-html="contact.h2">Posjetite <em>nas</em></h2>
+          <p class="eyebrow" data-i18n="contact.eyebrow">Kontakt</p>
+          <h2 class="h2" id="contact-h" data-i18n-html="contact.h2">Posjetite <em>nas</em></h2>
           <p class="contact__lead" data-i18n="contact.invite">
             Planirate turu, tražite vino za poklon ili želite degustaciju u Omišu? Javite nam se — rado ćemo vam pomoći.
           </p>
@@ -954,9 +1059,15 @@
     <div class="footer__inner">
 
       <div class="footer__brand">
-        <span data-i18n="footer.brand1">Vinarija</span>
-        <strong data-i18n="footer.brand2">Mimica</strong>
-        <em class="footer__brand-sub" data-i18n="footer.sub">Omiš · Dalmacija · od 1714.</em>
+        <img
+          src="images/logo-vinarija-mimica.png?v=14"
+          alt="Vinarija Mimica"
+          class="footer__brand-logo"
+          data-i18n-alt="nav.brand"
+          width="265"
+          height="182"
+          decoding="async"
+        >
       </div>
 
       <nav class="footer__nav" data-i18n-aria="footer.nav.aria">
@@ -1012,6 +1123,7 @@
   </a>
 
   <script src="js/i18n.js"></script>
-  <script src="js/main.js?v=2"></script>
+  <script src="js/main.js?v=3"></script>
+  <script src="js/tour-booking.js?v=4"></script>
 </body>
 </html>

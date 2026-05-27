@@ -1138,14 +1138,21 @@ address { font-style: normal; }
 
 .wines__grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(2, 1fr);
   gap: 18px;
+}
+
+@media (min-width: 1280px) {
+  .wines__grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
 }
 
 /* Stagger animation */
 .wines__grid .wcard:nth-child(1) { transition-delay: 0ms; }
 .wines__grid .wcard:nth-child(2) { transition-delay: 90ms; }
 .wines__grid .wcard:nth-child(3) { transition-delay: 180ms; }
+.wines__grid .wcard:nth-child(4) { transition-delay: 270ms; }
 
 .wcard {
   background: var(--cream);
@@ -1298,13 +1305,15 @@ address { font-style: normal; }
   text-align: right;
 }
 
-/* Wine card bottle cutouts (Mirabella, Ruža Omiška, Prošek) */
+/* Wine card bottle cutouts */
 .wcard--mirabella .wcard__body,
+.wcard--rose .wcard__body,
 .wcard--ruza .wcard__body,
 .wcard--prosek .wcard__body {
   position: relative;
   overflow: hidden;
   background: var(--cream);
+  min-height: 340px;
 }
 
 .wcard__bottle {
@@ -1335,6 +1344,10 @@ address { font-style: normal; }
 .wcard--mirabella .wcard__region,
 .wcard--mirabella .wcard__desc,
 .wcard--mirabella .wcard__buy,
+.wcard--rose .wcard__name,
+.wcard--rose .wcard__region,
+.wcard--rose .wcard__desc,
+.wcard--rose .wcard__buy,
 .wcard--ruza .wcard__name,
 .wcard--ruza .wcard__region,
 .wcard--ruza .wcard__desc,
@@ -1348,10 +1361,15 @@ address { font-style: normal; }
 }
 
 .wcard--mirabella .wcard__desc,
+.wcard--rose .wcard__desc,
 .wcard--ruza .wcard__desc,
 .wcard--prosek .wcard__desc {
   max-width: 54%;
   margin-bottom: 16px;
+}
+
+.wcard--rose .wcard__bottle {
+  bottom: 6px;
 }
 
 .wines__cta {

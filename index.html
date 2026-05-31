@@ -83,13 +83,15 @@
     <!-- ─── HERO ─── -->
     <section class="hero" id="hero" data-i18n-aria="hero.aria">
       <div class="hero__media" aria-hidden="true">
-        <img
-          src="https://images.unsplash.com/photo-1506377247377-2a5b3b417ebb?auto=format&w=1920&q=80"
-          data-i18n-alt="hero.alt"
-          alt="Vinogradi Vinarije Mimica na padinama Omiške Dinare"
-          class="hero__bg"
-          fetchpriority="high"
-        >
+        <video
+          class="hero__bg hero__video"
+          src="videos/hero-bg.mp4"
+          autoplay
+          muted
+          loop
+          playsinline
+          preload="auto"
+        ></video>
         <div class="hero__overlay"></div>
       </div>
 

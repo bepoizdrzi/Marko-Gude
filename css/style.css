@@ -589,8 +589,29 @@ address { font-style: normal; }
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center 55%;
+  object-position: center center;
+  display: block;
 }
+.hero__video {
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero__video {
+    display: none;
+  }
+  .hero__media {
+    background:
+      linear-gradient(
+        160deg,
+        rgba(20, 12, 8, 0.72) 0%,
+        rgba(46, 31, 20, 0.38) 45%,
+        rgba(20, 12, 8, 0.68) 100%
+      ),
+      url('images/vineyards-omiska-dinara.webp') center / cover no-repeat;
+  }
+}
+
 .hero__overlay {
   position: absolute;
   inset: 0;

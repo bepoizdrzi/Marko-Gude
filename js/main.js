@@ -22,6 +22,26 @@ document.querySelectorAll('.js-shop-link').forEach(el => {
 
 
 /* ─────────────────────────────────────────
+   HERO – background video
+   ───────────────────────────────────────── */
+const heroVideo = document.querySelector('.hero__video');
+
+if (heroVideo) {
+  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  if (reducedMotion) {
+    heroVideo.pause();
+    heroVideo.removeAttribute('autoplay');
+  } else {
+    heroVideo.play().catch(() => {
+      heroVideo.muted = true;
+      heroVideo.play().catch(() => {});
+    });
+  }
+}
+
+
+/* ─────────────────────────────────────────
    NAVIGACIJA – scroll stanje
    ───────────────────────────────────────── */
 const nav = document.getElementById('nav');

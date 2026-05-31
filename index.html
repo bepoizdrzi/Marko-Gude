@@ -85,13 +85,16 @@
       <div class="hero__media" aria-hidden="true">
         <video
           class="hero__bg hero__video"
-          src="videos/hero-bg.mp4"
+          poster="videos/hero-poster.jpg"
           autoplay
           muted
           loop
           playsinline
-          preload="auto"
-        ></video>
+          preload="metadata"
+        >
+          <source src="videos/hero-bg-hq.mp4" type="video/mp4">
+          <source src="videos/hero-bg.mp4" type="video/mp4">
+        </video>
         <div class="hero__overlay"></div>
       </div>
 

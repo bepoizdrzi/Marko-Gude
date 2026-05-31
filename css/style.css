@@ -584,6 +584,7 @@ address { font-style: normal; }
 .hero__media {
   position: absolute;
   inset: 0;
+  background: #2e1f14 url('images/vineyards-omiska-dinara.webp') center / cover no-repeat;
 }
 .hero__bg {
   width: 100%;
@@ -617,9 +618,9 @@ address { font-style: normal; }
   inset: 0;
   background: linear-gradient(
     160deg,
-    rgba(20, 12, 8, 0.72) 0%,
-    rgba(46, 31, 20, 0.38) 45%,
-    rgba(20, 12, 8, 0.68) 100%
+    rgba(20, 12, 8, 0.58) 0%,
+    rgba(46, 31, 20, 0.28) 45%,
+    rgba(20, 12, 8, 0.55) 100%
   );
 }
 

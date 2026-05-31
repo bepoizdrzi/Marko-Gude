@@ -593,6 +593,15 @@ address { font-style: normal; }
   object-position: center center;
   display: block;
 }
+.hero__poster-fallback {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center center;
+  z-index: 0;
+}
 .hero__video {
   position: absolute;
   inset: 0;
@@ -602,7 +611,7 @@ address { font-style: normal; }
   object-position: center center;
   pointer-events: none;
   opacity: 0;
-  transition: opacity 0.8s ease;
+  transition: opacity 0.5s ease;
 }
 .hero__video.is-playing {
   opacity: 1;

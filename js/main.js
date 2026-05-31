@@ -41,7 +41,6 @@ document.querySelectorAll('.js-shop-link').forEach(el => {
   var playing = false;
 
   function show() { v.classList.add('is-playing'); }
-  function hide() { v.classList.remove('is-playing'); }
 
   function ensurePlaying() {
     if (playing) return;
@@ -55,8 +54,8 @@ document.querySelectorAll('.js-shop-link').forEach(el => {
   v.addEventListener('playing', function () { playing = true; show(); });
   v.addEventListener('pause', function () { playing = false; });
 
-  v.addEventListener('canplay', ensurePlaying);
-  v.addEventListener('loadeddata', ensurePlaying);
+  v.addEventListener('loadeddata', function () { show(); ensurePlaying(); });
+  if (v.readyState >= 2) show();
   ensurePlaying();
 
   ['touchstart', 'click', 'scroll'].forEach(function (evt) {

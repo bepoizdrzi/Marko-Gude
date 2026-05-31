@@ -601,6 +601,22 @@ address { font-style: normal; }
   object-fit: cover;
   object-position: center center;
   pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.8s ease;
+}
+.hero__video.is-playing {
+  opacity: 1;
+}
+.hero__video::-webkit-media-controls,
+.hero__video::-webkit-media-controls-panel,
+.hero__video::-webkit-media-controls-play-button,
+.hero__video::-webkit-media-controls-start-playback-button,
+.hero__video::-webkit-media-controls-overlay-play-button,
+.hero__video::-webkit-media-controls-enclosure {
+  display: none !important;
+  -webkit-appearance: none !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
 }
 
 @media (prefers-reduced-motion: reduce) {

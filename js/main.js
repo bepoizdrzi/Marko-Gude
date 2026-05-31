@@ -40,25 +40,28 @@ document.querySelectorAll('.js-shop-link').forEach(el => {
   var CUT_END = 1.2;
   var playing = false;
 
+  function show() { v.classList.add('is-playing'); }
+  function hide() { v.classList.remove('is-playing'); }
+
   function ensurePlaying() {
     if (playing) return;
     var p = v.play();
     if (p && typeof p.then === 'function') {
-      p.then(function () { playing = true; })
+      p.then(function () { playing = true; show(); })
        .catch(function () { playing = false; });
     }
   }
 
-  v.addEventListener('play', function () { playing = true; });
+  v.addEventListener('playing', function () { playing = true; show(); });
   v.addEventListener('pause', function () { playing = false; });
 
   v.addEventListener('canplay', ensurePlaying);
   v.addEventListener('loadeddata', ensurePlaying);
   ensurePlaying();
 
-  document.addEventListener('touchstart', ensurePlaying, { once: true, passive: true });
-  document.addEventListener('click', ensurePlaying, { once: true });
-  document.addEventListener('scroll', ensurePlaying, { once: true, passive: true });
+  ['touchstart', 'click', 'scroll'].forEach(function (evt) {
+    document.addEventListener(evt, ensurePlaying, { once: true, passive: true });
+  });
 
   v.addEventListener('timeupdate', function () {
     if (v.duration && v.currentTime >= v.duration - CUT_END) {
@@ -73,16 +76,11 @@ document.querySelectorAll('.js-shop-link').forEach(el => {
   });
 
   setInterval(function () {
-    if (!playing && !document.hidden) {
-      ensurePlaying();
-    }
+    if (!playing && !document.hidden) ensurePlaying();
   }, 1000);
 
   document.addEventListener('visibilitychange', function () {
-    if (!document.hidden) {
-      playing = false;
-      ensurePlaying();
-    }
+    if (!document.hidden) { playing = false; ensurePlaying(); }
   });
 })();
 

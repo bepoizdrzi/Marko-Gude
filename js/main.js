@@ -24,21 +24,67 @@ document.querySelectorAll('.js-shop-link').forEach(el => {
 /* ─────────────────────────────────────────
    HERO – background video
    ───────────────────────────────────────── */
-const heroVideo = document.querySelector('.hero__video');
+(function () {
+  var v = document.querySelector('.hero__video');
+  if (!v) return;
 
-if (heroVideo) {
-  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (reducedMotion) { v.pause(); v.removeAttribute('autoplay'); return; }
 
-  if (reducedMotion) {
-    heroVideo.pause();
-    heroVideo.removeAttribute('autoplay');
-  } else {
-    heroVideo.play().catch(() => {
-      heroVideo.muted = true;
-      heroVideo.play().catch(() => {});
-    });
+  v.muted = true;
+  v.setAttribute('muted', '');
+  v.playsInline = true;
+  v.setAttribute('playsinline', '');
+  v.loop = true;
+
+  var CUT_END = 1.2;
+  var playing = false;
+
+  function ensurePlaying() {
+    if (playing) return;
+    var p = v.play();
+    if (p && typeof p.then === 'function') {
+      p.then(function () { playing = true; })
+       .catch(function () { playing = false; });
+    }
   }
-}
+
+  v.addEventListener('play', function () { playing = true; });
+  v.addEventListener('pause', function () { playing = false; });
+
+  v.addEventListener('canplay', ensurePlaying);
+  v.addEventListener('loadeddata', ensurePlaying);
+  ensurePlaying();
+
+  document.addEventListener('touchstart', ensurePlaying, { once: true, passive: true });
+  document.addEventListener('click', ensurePlaying, { once: true });
+  document.addEventListener('scroll', ensurePlaying, { once: true, passive: true });
+
+  v.addEventListener('timeupdate', function () {
+    if (v.duration && v.currentTime >= v.duration - CUT_END) {
+      v.currentTime = 0;
+    }
+  });
+
+  v.addEventListener('ended', function () {
+    v.currentTime = 0;
+    playing = false;
+    ensurePlaying();
+  });
+
+  setInterval(function () {
+    if (!playing && !document.hidden) {
+      ensurePlaying();
+    }
+  }, 1000);
+
+  document.addEventListener('visibilitychange', function () {
+    if (!document.hidden) {
+      playing = false;
+      ensurePlaying();
+    }
+  });
+})();
 
 
 /* ─────────────────────────────────────────

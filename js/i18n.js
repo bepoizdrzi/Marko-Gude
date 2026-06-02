@@ -55,6 +55,7 @@ const I18N = {
     'vineyards.p2': 'Prinosi po trsu su nam namjerno izuzetno niski, ali su zato vina koja stvaramo prepoznatljiva, snažna i robusna. Berbu obavljamo isključivo ručno, kako bismo bili potpuno sigurni da biramo samo najboljeg grožđa.',
     'vineyards.vf1': 'Insolacija',
     'vineyards.vf2': 'Ekspozicija',
+    'vineyards.vf2val': 'Jug',
     'vineyards.vf3': 'Berba',
     'vineyards.vf3val': 'Ručno',
 
@@ -334,6 +335,7 @@ const I18N = {
     'vineyards.p2': 'Our yields per vine are intentionally extremely low, but the wines we create are distinctive, powerful and robust. We harvest exclusively by hand to be completely sure we select only the finest grapes.',
     'vineyards.vf1': 'Insolation',
     'vineyards.vf2': 'Exposure',
+    'vineyards.vf2val': 'South',
     'vineyards.vf3': 'Harvest',
     'vineyards.vf3val': 'Hand',
 

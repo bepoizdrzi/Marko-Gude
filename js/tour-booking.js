@@ -4,8 +4,10 @@
    ============================================================ */
 
 const TOUR_BOOKING_CONFIG = {
-  endpoint: 'https://formsubmit.co/ajax/info@zin1714.com',
+  /* Classic POST (not /ajax/) — works reliably on GitHub Pages without CORS hangs */
+  formAction: 'https://formsubmit.co/info@zin1714.com',
   ownerEmail: 'info@zin1714.com',
+  submitTimeoutMs: 30000,
   tours: {
     tour1: { minGuests: 6, maxGuests: 20 },
     tour2: { minGuests: 5, maxGuests: 20 },
@@ -31,6 +33,9 @@ const TOUR_BOOKING_CONFIG = {
     submitBtn: document.getElementById('tourSubmitBtn'),
     success: document.getElementById('tourBookingSuccess'),
     againBtn: document.getElementById('tourBookingAgain'),
+    thankYouModal: document.getElementById('bookingThankYouModal'),
+    thankYouClose: document.getElementById('bookingThankYouClose'),
+    thankYouBackdrop: document.getElementById('bookingThankYouBackdrop'),
     calMonthLabel: document.getElementById('calMonthLabel'),
     calWeekdays: document.getElementById('calWeekdays'),
     calDays: document.getElementById('calDays'),
@@ -339,12 +344,25 @@ const TOUR_BOOKING_CONFIG = {
     els.submitBtn.disabled = loading;
   }
 
+  function showThankYouModal() {
+    if (!els.thankYouModal) return;
+    els.thankYouModal.hidden = false;
+    document.body.style.overflow = 'hidden';
+    els.thankYouClose?.focus();
+  }
+
+  function closeThankYouModal() {
+    if (!els.thankYouModal) return;
+    els.thankYouModal.hidden = true;
+    document.body.style.overflow = '';
+  }
+
   function showSuccess() {
-    root.classList.add('is-success');
-    els.success.hidden = false;
+    showThankYouModal();
   }
 
   function resetModule() {
+    closeThankYouModal();
     form.reset();
     state.selectedDate = null;
     state.viewYear = null;
@@ -354,7 +372,7 @@ const TOUR_BOOKING_CONFIG = {
     els.tourDateDisplay.dataset.empty = 'true';
     Object.keys(els.errors).forEach(clearError);
     root.classList.remove('is-success');
-    els.success.hidden = true;
+    if (els.success) els.success.hidden = true;
     populateGuests();
     renderWeekdays();
     renderCalendar();
@@ -371,17 +389,28 @@ const TOUR_BOOKING_CONFIG = {
     }
   }
 
-  async function submitForm(event) {
-    event.preventDefault();
-    if (!validateForm()) return;
+  let submitFrame = null;
 
-    setLoading(true);
+  function getSubmitFrame() {
+    if (submitFrame && document.body.contains(submitFrame)) return submitFrame;
+    submitFrame = document.createElement('iframe');
+    submitFrame.name = 'tourBookingSubmitFrame';
+    submitFrame.id = 'tourBookingSubmitFrame';
+    submitFrame.title = 'Booking submission';
+    submitFrame.setAttribute('aria-hidden', 'true');
+    submitFrame.style.cssText =
+      'position:absolute;width:0;height:0;border:0;opacity:0;pointer-events:none';
+    document.body.appendChild(submitFrame);
+    return submitFrame;
+  }
 
-    const payload = {
+  function buildBookingFields() {
+    return {
       _subject: t('booking.emailSubject'),
       _template: 'table',
       _captcha: 'false',
       _replyto: els.tourEmail.value.trim(),
+      _next: window.location.href.split('#')[0],
       name: els.tourName.value.trim(),
       email: els.tourEmail.value.trim(),
       phone: els.tourPhone.value.trim(),
@@ -390,24 +419,69 @@ const TOUR_BOOKING_CONFIG = {
       guests: els.tourGuests.value,
       notes: els.tourNotes.value.trim() || '—',
     };
+  }
 
-    try {
-      const response = await fetch(TOUR_BOOKING_CONFIG.endpoint, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          Accept: 'application/json',
-        },
-        body: JSON.stringify(payload),
+  function sendViaFormPost(fields) {
+    return new Promise((resolve, reject) => {
+      const frame = getSubmitFrame();
+      const postForm = document.createElement('form');
+      postForm.method = 'POST';
+      postForm.action = TOUR_BOOKING_CONFIG.formAction;
+      postForm.target = frame.name;
+      postForm.acceptCharset = 'UTF-8';
+      postForm.style.display = 'none';
+
+      Object.entries(fields).forEach(([name, value]) => {
+        const input = document.createElement('input');
+        input.type = 'hidden';
+        input.name = name;
+        input.value = value == null ? '' : String(value);
+        postForm.appendChild(input);
       });
 
-      const data = await response.json().catch(() => ({}));
-      if (!response.ok || data.success === false) {
-        throw new Error(data.message || 'Submit failed');
-      }
+      let settled = false;
+      const finish = (fn, arg) => {
+        if (settled) return;
+        settled = true;
+        clearTimeout(timer);
+        frame.removeEventListener('load', onFrameLoad);
+        postForm.remove();
+        fn(arg);
+      };
 
+      let posted = false;
+      const onFrameLoad = () => {
+        if (!posted) return;
+        finish(resolve);
+      };
+      const timer = setTimeout(
+        () => finish(reject, new Error('timeout')),
+        TOUR_BOOKING_CONFIG.submitTimeoutMs,
+      );
+
+      frame.addEventListener('load', onFrameLoad);
+      document.body.appendChild(postForm);
+      posted = true;
+      postForm.submit();
+    });
+  }
+
+  async function submitForm(event) {
+    event.preventDefault();
+    if (!validateForm()) return;
+
+    setLoading(true);
+
+    try {
+      await sendViaFormPost(buildBookingFields());
       showSuccess();
       form.reset();
+      state.selectedDate = null;
+      els.tourDate.value = '';
+      els.tourDateDisplay.textContent = t('booking.dateEmpty');
+      els.tourDateDisplay.dataset.empty = 'true';
+      populateGuests();
+      renderCalendar();
     } catch (err) {
       setError('tourEmail', t('booking.error.send'));
       console.error('Tour booking submit failed:', err);
@@ -443,7 +517,15 @@ const TOUR_BOOKING_CONFIG = {
   });
 
   form.addEventListener('submit', submitForm);
-  els.againBtn.addEventListener('click', resetModule);
+  els.againBtn?.addEventListener('click', resetModule);
+  els.thankYouClose?.addEventListener('click', resetModule);
+  els.thankYouBackdrop?.addEventListener('click', resetModule);
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && els.thankYouModal && !els.thankYouModal.hidden) {
+      resetModule();
+    }
+  });
 
   ['input', 'change'].forEach((eventName) => {
     form.addEventListener(eventName, (e) => {

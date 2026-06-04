@@ -1,13 +1,15 @@
 /* ============================================================
    VINARIJA MIMICA – tour booking module
-   Sends reservations via FormSubmit (static GitHub Pages).
+   Works on GitHub Pages (no domain / backend required).
    ============================================================ */
 
 const TOUR_BOOKING_CONFIG = {
-  /* Classic POST (not /ajax/) — works reliably on GitHub Pages without CORS hangs */
-  formAction: 'https://formsubmit.co/info@zin1714.com',
   ownerEmail: 'info@zin1714.com',
-  submitTimeoutMs: 30000,
+  /* Preporuka: besplatno na https://web3forms.com → upiši info@zin1714.com → kopiraj Access Key */
+  web3formsAccessKey: '',
+  formsubmitAjax: 'https://formsubmit.co/ajax/info@zin1714.com',
+  formsubmitPost: 'https://formsubmit.co/info@zin1714.com',
+  submitTimeoutMs: 8000,
   tours: {
     tour1: { minGuests: 6, maxGuests: 20 },
     tour2: { minGuests: 5, maxGuests: 20 },
@@ -339,9 +341,17 @@ const TOUR_BOOKING_CONFIG = {
     return value;
   }
 
+  const submitText = els.submitBtn?.querySelector('.treserve__submit-text');
+  const submitLoading = els.submitBtn?.querySelector('.treserve__submit-loading');
+
   function setLoading(loading) {
     els.submitBtn.classList.toggle('is-loading', loading);
     els.submitBtn.disabled = loading;
+    if (submitText) submitText.hidden = loading;
+    if (submitLoading) {
+      submitLoading.hidden = !loading;
+      submitLoading.setAttribute('aria-hidden', loading ? 'false' : 'true');
+    }
   }
 
   function showThankYouModal() {
@@ -389,21 +399,6 @@ const TOUR_BOOKING_CONFIG = {
     }
   }
 
-  let submitFrame = null;
-
-  function getSubmitFrame() {
-    if (submitFrame && document.body.contains(submitFrame)) return submitFrame;
-    submitFrame = document.createElement('iframe');
-    submitFrame.name = 'tourBookingSubmitFrame';
-    submitFrame.id = 'tourBookingSubmitFrame';
-    submitFrame.title = 'Booking submission';
-    submitFrame.setAttribute('aria-hidden', 'true');
-    submitFrame.style.cssText =
-      'position:absolute;width:0;height:0;border:0;opacity:0;pointer-events:none';
-    document.body.appendChild(submitFrame);
-    return submitFrame;
-  }
-
   function buildBookingFields() {
     return {
       _subject: t('booking.emailSubject'),
@@ -421,49 +416,100 @@ const TOUR_BOOKING_CONFIG = {
     };
   }
 
-  function sendViaFormPost(fields) {
-    return new Promise((resolve, reject) => {
-      const frame = getSubmitFrame();
-      const postForm = document.createElement('form');
-      postForm.method = 'POST';
-      postForm.action = TOUR_BOOKING_CONFIG.formAction;
-      postForm.target = frame.name;
-      postForm.acceptCharset = 'UTF-8';
-      postForm.style.display = 'none';
+  function buildWeb3FormsBody(fields) {
+    return {
+      access_key: TOUR_BOOKING_CONFIG.web3formsAccessKey,
+      subject: fields._subject,
+      from_name: 'Vinarija Mimica – rezervacija',
+      name: fields.name,
+      email: fields.email,
+      phone: fields.phone,
+      tour: fields.tour,
+      date: fields.date,
+      guests: fields.guests,
+      message: fields.notes,
+      replyto: fields.email,
+    };
+  }
 
-      Object.entries(fields).forEach(([name, value]) => {
-        const input = document.createElement('input');
-        input.type = 'hidden';
-        input.name = name;
-        input.value = value == null ? '' : String(value);
-        postForm.appendChild(input);
+  async function sendViaWeb3Forms(fields) {
+    const controller = new AbortController();
+    const timer = setTimeout(() => controller.abort(), TOUR_BOOKING_CONFIG.submitTimeoutMs);
+
+    try {
+      const res = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+        },
+        body: JSON.stringify(buildWeb3FormsBody(fields)),
+        signal: controller.signal,
       });
+      const data = await res.json().catch(() => ({}));
+      if (!res.ok || data.success === false) {
+        throw new Error(data.message || 'Web3Forms error');
+      }
+    } finally {
+      clearTimeout(timer);
+    }
+  }
 
-      let settled = false;
-      const finish = (fn, arg) => {
-        if (settled) return;
-        settled = true;
-        clearTimeout(timer);
-        frame.removeEventListener('load', onFrameLoad);
-        postForm.remove();
-        fn(arg);
-      };
-
-      let posted = false;
-      const onFrameLoad = () => {
-        if (!posted) return;
-        finish(resolve);
-      };
-      const timer = setTimeout(
-        () => finish(reject, new Error('timeout')),
-        TOUR_BOOKING_CONFIG.submitTimeoutMs,
-      );
-
-      frame.addEventListener('load', onFrameLoad);
-      document.body.appendChild(postForm);
-      posted = true;
-      postForm.submit();
+  function toFormData(fields) {
+    const formData = new FormData();
+    Object.entries(fields).forEach(([name, value]) => {
+      formData.append(name, value == null ? '' : String(value));
     });
+    return formData;
+  }
+
+  async function sendViaFormSubmitAjax(fields) {
+    const controller = new AbortController();
+    const timer = setTimeout(() => controller.abort(), TOUR_BOOKING_CONFIG.submitTimeoutMs);
+
+    try {
+      const res = await fetch(TOUR_BOOKING_CONFIG.formsubmitAjax, {
+        method: 'POST',
+        headers: { Accept: 'application/json' },
+        body: toFormData(fields),
+        signal: controller.signal,
+      });
+      const text = await res.text();
+      let data = {};
+      try {
+        data = JSON.parse(text);
+      } catch (_) {
+        /* ignore */
+      }
+      if (data.success === false || data.success === 'false') {
+        throw new Error(data.message || 'FormSubmit rejected');
+      }
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    } finally {
+      clearTimeout(timer);
+    }
+  }
+
+  async function sendViaFormSubmitNoCors(fields) {
+    await fetch(TOUR_BOOKING_CONFIG.formsubmitPost, {
+      method: 'POST',
+      body: toFormData(fields),
+      mode: 'no-cors',
+    });
+  }
+
+  async function sendBooking(fields) {
+    if (TOUR_BOOKING_CONFIG.web3formsAccessKey) {
+      await sendViaWeb3Forms(fields);
+      return;
+    }
+
+    try {
+      await sendViaFormSubmitAjax(fields);
+    } catch (ajaxErr) {
+      console.warn('FormSubmit AJAX failed, trying direct POST:', ajaxErr);
+      await sendViaFormSubmitNoCors(fields);
+    }
   }
 
   async function submitForm(event) {
@@ -473,7 +519,7 @@ const TOUR_BOOKING_CONFIG = {
     setLoading(true);
 
     try {
-      await sendViaFormPost(buildBookingFields());
+      await sendBooking(buildBookingFields());
       showSuccess();
       form.reset();
       state.selectedDate = null;

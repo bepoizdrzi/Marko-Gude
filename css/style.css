@@ -2228,14 +2228,25 @@ address { font-style: normal; }
   opacity: 0.82;
 }
 
+.treserve__submit-text,
 .treserve__submit-loading {
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: 10px;
 }
 
-.treserve__submit.is-loading .treserve__submit-text { display: none; }
-.treserve__submit.is-loading .treserve__submit-loading { display: inline-flex !important; }
+.treserve__submit-loading[hidden] {
+  display: none !important;
+}
+
+.treserve__submit.is-loading .treserve__submit-text {
+  display: none !important;
+}
+
+.treserve__submit.is-loading .treserve__submit-loading {
+  display: inline-flex !important;
+}
 
 .treserve__spinner {
   width: 16px;

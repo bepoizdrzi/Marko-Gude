@@ -67,7 +67,7 @@
   <div class="nav__menu" id="navMenu" aria-hidden="true">
     <ul class="nav__list" role="list">
       <li><a href="#o-nama"          class="nav__link" data-i18n="nav.o-nama">O nama</a></li>
-      <li><a href="#ture"            class="nav__link" data-i18n="nav.ture">Vinske ture</a></li>
+      <li hidden><a href="#ture"            class="nav__link" data-i18n="nav.ture">Vinske ture</a></li>
       <li><a href="#vina"            class="nav__link" data-i18n="nav.vina">Vina</a></li>
       <li><a href="#vinogradi"       class="nav__link" data-i18n="nav.vinogradi">Vinogradi</a></li>
       <li><a href="#obitelj"         class="nav__link" data-i18n="nav.obitelj">Obitelj</a></li>
@@ -187,8 +187,8 @@
       </div>
     </section>
 
-    <!-- ─── VINSKE TURE ─── -->
-    <section class="tours" id="ture" aria-labelledby="tours-h">
+    <!-- Vinske ture i rezervacije ostaju u stranici, skrivene s prikaza. -->
+    <section class="tours" id="ture" hidden aria-labelledby="tours-h">
 
       <div class="container tours__top">
         <div class="tours__top-text">
@@ -1017,7 +1017,7 @@
           </div>
 
           <aside class="shops__aside reveal reveal--delay" data-i18n-aria="shops.aside.aria">
-            <div class="shops__tour">
+            <div class="shops__tour" hidden>
               <span class="shops__aside-badge" data-i18n="shops.tour.badge">Vinske ture</span>
               <h3 class="shops__subheading" data-i18n="shops.tour.h3">Polazišna točka za vaše vinske avanture</h3>
               <p class="shops__aside-text" data-i18n="shops.tour.text">
@@ -1213,7 +1213,7 @@
 
       <nav class="footer__nav" data-i18n-aria="footer.nav.aria">
         <a href="#o-nama" data-i18n="nav.o-nama">O nama</a>
-        <a href="#ture" data-i18n="nav.ture">Vinske ture</a>
+        <a href="#ture" hidden data-i18n="nav.ture">Vinske ture</a>
         <a href="#zinfandel" data-i18n="footer.zinfandel">Zinfandel</a>
         <a href="#vina" data-i18n="nav.vina">Vina</a>
         <a href="#vinogradi" data-i18n="nav.vinogradi">Vinogradi</a>
@@ -1278,7 +1278,7 @@
     </svg>
   </a>
 
-  <script src="js/i18n.js?v=3"></script>
+  <script src="js/i18n.js?v=4"></script>
   <script src="js/main.js?v=8"></script>
   <script src="js/tour-booking.js?v=8"></script>
 </body>

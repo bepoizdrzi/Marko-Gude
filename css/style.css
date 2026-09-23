@@ -37,6 +37,14 @@
 }
 
 /* ── RESET ── */
+#ture,
+.shops__tour,
+a[href="#ture"],
+#bookingThankYouModal,
+#tourReserve {
+  display: none !important;
+}
+
 *, *::before, *::after {
   box-sizing: border-box;
   margin: 0;

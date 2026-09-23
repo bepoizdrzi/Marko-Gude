@@ -9,7 +9,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css?v=32">
+  <link rel="stylesheet" href="css/style.css?v=33">
 </head>
 <body>
 
@@ -67,7 +67,6 @@
   <div class="nav__menu" id="navMenu" aria-hidden="true">
     <ul class="nav__list" role="list">
       <li><a href="#o-nama"          class="nav__link" data-i18n="nav.o-nama">O nama</a></li>
-      <li hidden><a href="#ture"            class="nav__link" data-i18n="nav.ture">Vinske ture</a></li>
       <li><a href="#vina"            class="nav__link" data-i18n="nav.vina">Vina</a></li>
       <li><a href="#vinogradi"       class="nav__link" data-i18n="nav.vinogradi">Vinogradi</a></li>
       <li><a href="#obitelj"         class="nav__link" data-i18n="nav.obitelj">Obitelj</a></li>
@@ -185,334 +184,6 @@
 
         </div>
       </div>
-    </section>
-
-    <!-- Vinske ture i rezervacije ostaju u stranici, skrivene s prikaza. -->
-    <section class="tours" id="ture" hidden aria-labelledby="tours-h">
-
-      <div class="container tours__top">
-        <div class="tours__top-text">
-          <p class="eyebrow" data-i18n="tours.eyebrow">Vinske ture</p>
-          <h2 class="h2" id="tours-h" data-i18n-html="tours.h2">Zakoračite u naš<br><em>svijet</em></h2>
-          <p class="tours__intro" data-i18n="tours.intro">
-            Osmislili smo dvije ture kao putovanje kroz povijest, obiteljsku
-            tradiciju i predivan krajolik u kojem stvaramo naša vina. Sve ture
-            organiziraju se uz prethodnu najavu.
-          </p>
-        </div>
-      </div>
-
-      <div class="container tours__cards">
-
-        <article class="tcard tcard--gastro" aria-labelledby="tour1-h">
-          <div class="tcard__body">
-            <div class="tcard__num" aria-hidden="true">01</div>
-            <div class="tcard__badge" data-i18n="tour1.badge">Wine &amp; Gastro</div>
-            <h3 class="tcard__name" id="tour1-h" data-i18n="tour1.name">Ekskluzivna rustikalna dalmatinska vinska tura</h3>
-            <p class="tcard__desc" data-i18n="tour1.desc">
-              Trosatna avantura od trsa do dalmatinskog stola – od vinograda u Svinišću do večere u konobi.
-            </p>
-            <ul class="tcard__list">
-              <li><span class="tcard__dot" aria-hidden="true"></span><span data-i18n-html="tour1.li1"><strong>Posjet vinogradu</strong> – 5 rakija i likera s dalmatinskim soparnikom</span></li>
-              <li><span class="tcard__dot" aria-hidden="true"></span><span data-i18n-html="tour1.li2"><strong>Večera</strong> u 3 slijeda</span></li>
-              <li><span class="tcard__dot" aria-hidden="true"></span><span data-i18n-html="tour1.li3"><strong>Vinska selekcija</strong>: 5 vina po preporuci vinara</span></li>
-              <li><span class="tcard__dot" aria-hidden="true"></span><span data-i18n="tour1.li4">Opcija: živa glazba na zahtjev</span></li>
-            </ul>
-            <div class="tcard__footer">
-              <div class="tcard__meta">
-                <div class="tcard__meta-item">
-                  <span class="tcard__meta-label" data-i18n="label.duration">Trajanje</span>
-                  <span class="tcard__meta-val" data-i18n="tour1.duration">3 sata</span>
-                </div>
-                <div class="tcard__meta-item">
-                  <span class="tcard__meta-label" data-i18n="label.minGroup">Min. grupa</span>
-                  <span class="tcard__meta-val" data-i18n="tour1.minGroup">6 osoba</span>
-                </div>
-              </div>
-              <div class="tcard__price">
-                <span class="tcard__price-num">130 €</span>
-                <span class="tcard__price-label" data-i18n="label.perPerson">po osobi</span>
-              </div>
-            </div>
-          </div>
-          <div class="tcard__image" role="region" data-i18n-aria="tour1.carousel.region">
-            <div class="tcard__carousel" id="tourGastroCarousel" tabindex="0">
-              <div class="tcard__carousel-track" aria-live="polite">
-                <figure class="tcard__slide is-active">
-                  <img
-                    src="images/tour-rustikalna-vinograd.png"
-                    data-i18n-alt="tour1.alt"
-                    alt="Degustacija vina i soparnika među vinovim trsovima Vinarije Mimica"
-                    class="tcard__image-photo"
-                    width="1200"
-                    height="900"
-                    decoding="async"
-                  >
-                </figure>
-                <figure class="tcard__slide">
-                  <img
-                    src="images/tour-gastro-konoba.png"
-                    data-i18n-alt="tour1.alt2"
-                    alt="Rustikalna konoba pripremljena za goste"
-                    class="tcard__image-photo"
-                    width="1200"
-                    height="900"
-                    loading="lazy"
-                    decoding="async"
-                  >
-                </figure>
-                <figure class="tcard__slide">
-                  <img
-                    src="images/tour-gastro-soparnik.png"
-                    data-i18n-alt="tour1.alt3"
-                    alt="Tradicionalni dalmatinski soparnik"
-                    class="tcard__image-photo"
-                    width="1200"
-                    height="900"
-                    loading="lazy"
-                    decoding="async"
-                  >
-                </figure>
-                <figure class="tcard__slide">
-                  <img
-                    src="images/tour-gastro-vecera.png"
-                    data-i18n-alt="tour1.alt4"
-                    alt="Večera i degustacija u konobi"
-                    class="tcard__image-photo"
-                    width="1200"
-                    height="900"
-                    loading="lazy"
-                    decoding="async"
-                  >
-                </figure>
-                <figure class="tcard__slide">
-                  <img
-                    src="images/tour-gastro-podrum.png"
-                    data-i18n-alt="tour1.alt5"
-                    alt="Bačve u podrumu Vinarije Mimica"
-                    class="tcard__image-photo"
-                    width="1200"
-                    height="900"
-                    loading="lazy"
-                    decoding="async"
-                  >
-                </figure>
-              </div>
-              <button type="button" class="tcard__carousel-btn tcard__carousel-btn--prev" data-i18n-aria="tour1.carousel.prev" aria-label="Prethodna fotografija">&#8592;</button>
-              <button type="button" class="tcard__carousel-btn tcard__carousel-btn--next" data-i18n-aria="tour1.carousel.next" aria-label="Sljedeća fotografija">&#8594;</button>
-              <div class="tcard__carousel-dots" role="tablist" aria-label="Fotografije ture">
-                <button type="button" class="tcard__carousel-dot is-active" data-slide="0" aria-label="1 / 5" aria-selected="true"></button>
-                <button type="button" class="tcard__carousel-dot" data-slide="1" aria-label="2 / 5" aria-selected="false"></button>
-                <button type="button" class="tcard__carousel-dot" data-slide="2" aria-label="3 / 5" aria-selected="false"></button>
-                <button type="button" class="tcard__carousel-dot" data-slide="3" aria-label="4 / 5" aria-selected="false"></button>
-                <button type="button" class="tcard__carousel-dot" data-slide="4" aria-label="5 / 5" aria-selected="false"></button>
-              </div>
-            </div>
-            <div class="tcard__image-overlay"></div>
-          </div>
-        </article>
-
-        <article class="tcard tcard--rev" aria-labelledby="tour2-h">
-          <div class="tcard__image" role="region" data-i18n-aria="tour2.carousel.region">
-            <div class="tcard__carousel" id="tourOutdoorCarousel" tabindex="0">
-              <div class="tcard__carousel-track" aria-live="polite">
-                <figure class="tcard__slide is-active">
-                  <img
-                    src="images/tour-outdoor-grupa.png"
-                    data-i18n-alt="tour2.alt"
-                    alt="Grupa gostiju na degustaciji u vinogradu Vinarije Mimica"
-                    class="tcard__image-photo"
-                    width="1200"
-                    height="900"
-                    decoding="async"
-                  >
-                </figure>
-                <figure class="tcard__slide">
-                  <img
-                    src="images/tour-outdoor-trsovi.png"
-                    data-i18n-alt="tour2.alt2"
-                    alt="Gosti među vinovim trsovima na padinama Omiške Dinare"
-                    class="tcard__image-photo"
-                    width="1200"
-                    height="900"
-                    loading="lazy"
-                    decoding="async"
-                  >
-                </figure>
-                <figure class="tcard__slide">
-                  <img
-                    src="images/tour-outdoor-degustacija.png"
-                    data-i18n-alt="tour2.alt3"
-                    alt="Degustacija vina i rakija na otvorenom među trsovima"
-                    class="tcard__image-photo"
-                    width="1200"
-                    height="900"
-                    loading="lazy"
-                    decoding="async"
-                  >
-                </figure>
-                <figure class="tcard__slide">
-                  <img
-                    src="images/tour-outdoor-padine.png"
-                    data-i18n-alt="tour2.alt4"
-                    alt="Vinogradi na padinama Omiške Dinare s pogledom na more"
-                    class="tcard__image-photo"
-                    width="1200"
-                    height="900"
-                    loading="lazy"
-                    decoding="async"
-                  >
-                </figure>
-              </div>
-              <button type="button" class="tcard__carousel-btn tcard__carousel-btn--prev" data-i18n-aria="tour2.carousel.prev" aria-label="Prethodna fotografija">&#8592;</button>
-              <button type="button" class="tcard__carousel-btn tcard__carousel-btn--next" data-i18n-aria="tour2.carousel.next" aria-label="Sljedeća fotografija">&#8594;</button>
-              <div class="tcard__carousel-dots" role="tablist" aria-label="Fotografije ture">
-                <button type="button" class="tcard__carousel-dot is-active" data-slide="0" aria-label="1 / 4" aria-selected="true"></button>
-                <button type="button" class="tcard__carousel-dot" data-slide="1" aria-label="2 / 4" aria-selected="false"></button>
-                <button type="button" class="tcard__carousel-dot" data-slide="2" aria-label="3 / 4" aria-selected="false"></button>
-                <button type="button" class="tcard__carousel-dot" data-slide="3" aria-label="4 / 4" aria-selected="false"></button>
-              </div>
-            </div>
-            <div class="tcard__image-overlay"></div>
-          </div>
-          <div class="tcard__body">
-            <div class="tcard__num" aria-hidden="true">02</div>
-            <div class="tcard__badge" data-i18n="tour2.badge">Outdoor degustacija</div>
-            <h3 class="tcard__name" id="tour2-h" data-i18n="tour2.name">Degustacija na strmim padinama Dinare</h3>
-            <p class="tcard__desc" data-i18n="tour2.desc">
-              Na otvorenom, među trsovima na padinama Omiške Dinare – s pogledom koji oduzima dah.
-            </p>
-            <ul class="tcard__list">
-              <li><span class="tcard__dot" aria-hidden="true"></span><span data-i18n-html="tour2.li1"><strong>4 vrhunska vina</strong> i domaće rakije po izboru</span></li>
-              <li><span class="tcard__dot" aria-hidden="true"></span><span data-i18n-html="tour2.li2"><strong>Gastro pratnja</strong> – sirevi, pršut, hrskavi krekeri</span></li>
-              <li><span class="tcard__dot" aria-hidden="true"></span><span data-i18n="tour2.li3">Panoramski pogled na vinograde i Omiš</span></li>
-            </ul>
-            <div class="tcard__footer">
-              <div class="tcard__meta">
-                <div class="tcard__meta-item">
-                  <span class="tcard__meta-label" data-i18n="label.duration">Trajanje</span>
-                  <span class="tcard__meta-val" data-i18n="tour2.duration">1,5 sati</span>
-                </div>
-                <div class="tcard__meta-item">
-                  <span class="tcard__meta-label" data-i18n="label.minGroup">Min. grupa</span>
-                  <span class="tcard__meta-val" data-i18n="tour2.minGroup">5 osoba</span>
-                </div>
-              </div>
-              <div class="tcard__price">
-                <span class="tcard__price-num">60 €</span>
-                <span class="tcard__price-label" data-i18n="label.perPerson">po osobi</span>
-              </div>
-            </div>
-          </div>
-        </article>
-
-      </div>
-
-      <div class="container">
-        <div class="tours__reserve">
-          <div class="treserve" id="tourReserve">
-            <header class="treserve__head">
-              <p class="treserve__eyebrow" data-i18n="booking.eyebrow">Rezervacija</p>
-              <h3 class="treserve__title" data-i18n="booking.title">Rezervirajte svoju turu</h3>
-              <p class="treserve__lead" data-i18n="booking.lead">
-                Odaberite datum i pošaljite upit — potvrdit ćemo vam termin u najkraćem mogućem roku.
-              </p>
-            </header>
-
-            <form class="treserve__form" id="tourBookingForm" novalidate>
-              <div class="treserve__row treserve__row--meta">
-                <div class="treserve__field">
-                  <label class="treserve__label" for="tourType" data-i18n="booking.tourLabel">Odabir ture</label>
-                  <select class="treserve__input treserve__select" id="tourType" name="tour" required>
-                    <option value="" disabled selected data-i18n="booking.tourPlaceholder">Odaberite turu</option>
-                    <option value="tour1" data-i18n="booking.tour1">Wine &amp; Gastro — rustikalna tura (3 h)</option>
-                    <option value="tour2" data-i18n="booking.tour2">Outdoor degustacija (1,5 h)</option>
-                  </select>
-                  <span class="treserve__error" id="tourTypeError" role="alert"></span>
-                </div>
-
-                <div class="treserve__field">
-                  <label class="treserve__label" for="tourGuests" data-i18n="booking.guestsLabel">Broj osoba</label>
-                  <select class="treserve__input treserve__select" id="tourGuests" name="guests" required disabled></select>
-                  <p class="treserve__hint" id="tourGuestsHint" data-i18n="booking.guestsHintSelectTour">Prvo odaberite turu</p>
-                  <span class="treserve__error" id="tourGuestsError" role="alert"></span>
-                </div>
-              </div>
-
-              <div class="treserve__field treserve__field--date">
-                <span class="treserve__label" id="tourDateLabel" data-i18n="booking.dateLabel">Datum ture</span>
-                <div class="treserve__calendar" id="tourCalendar" aria-labelledby="tourDateLabel">
-                  <div class="treserve__cal-head">
-                    <button type="button" class="treserve__cal-nav" id="calPrev" data-i18n-aria="booking.calPrev" aria-label="Prethodni mjesec">
-                      <svg width="14" height="14" viewBox="0 0 16 16" aria-hidden="true"><path d="M10 3L5 8l5 5" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>
-                    </button>
-                    <span class="treserve__cal-month" id="calMonthLabel" aria-live="polite"></span>
-                    <button type="button" class="treserve__cal-nav" id="calNext" data-i18n-aria="booking.calNext" aria-label="Sljedeći mjesec">
-                      <svg width="14" height="14" viewBox="0 0 16 16" aria-hidden="true"><path d="M6 3l5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>
-                    </button>
-                  </div>
-                  <div class="treserve__cal-weekdays" id="calWeekdays" aria-hidden="true"></div>
-                  <div class="treserve__cal-days" id="calDays" role="grid" aria-labelledby="tourDateLabel"></div>
-                </div>
-                <input type="hidden" id="tourDate" name="date" required>
-                <p class="treserve__date-picked" id="tourDateDisplay" data-empty="true" data-i18n="booking.dateEmpty">Odaberite datum u kalendaru</p>
-                <span class="treserve__error" id="tourDateError" role="alert"></span>
-              </div>
-
-              <div class="treserve__row treserve__row--contact">
-                <div class="treserve__field">
-                  <label class="treserve__label" for="tourName" data-i18n="booking.nameLabel">Ime i prezime</label>
-                  <input class="treserve__input" type="text" id="tourName" name="name" autocomplete="name" required>
-                  <span class="treserve__error" id="tourNameError" role="alert"></span>
-                </div>
-
-                <div class="treserve__field">
-                  <label class="treserve__label" for="tourEmail" data-i18n="booking.emailLabel">E-mail</label>
-                  <input class="treserve__input" type="email" id="tourEmail" name="email" autocomplete="email" inputmode="email" required>
-                  <span class="treserve__error" id="tourEmailError" role="alert"></span>
-                </div>
-              </div>
-
-              <div class="treserve__field">
-                <label class="treserve__label" for="tourPhone" data-i18n="booking.phoneLabel">Broj telefona</label>
-                <input class="treserve__input" type="tel" id="tourPhone" name="phone" autocomplete="tel" inputmode="tel" required>
-                <span class="treserve__error" id="tourPhoneError" role="alert"></span>
-              </div>
-
-              <div class="treserve__field">
-                <label class="treserve__label" for="tourNotes" data-i18n="booking.notesLabel">Dodatne napomene</label>
-                <textarea class="treserve__input treserve__textarea" id="tourNotes" name="notes" rows="2" data-i18n-placeholder="booking.notesPlaceholder" placeholder="Alergije, posebni zahtjevi, preferirani termin…"></textarea>
-              </div>
-
-              <button type="submit" class="btn btn--gold treserve__submit" id="tourSubmitBtn">
-                <span class="treserve__submit-text" data-i18n="booking.submit">Pošalji rezervaciju</span>
-                <span class="treserve__submit-loading" hidden aria-hidden="true">
-                  <span class="treserve__spinner"></span>
-                  <span data-i18n="booking.sending">Slanje…</span>
-                </span>
-              </button>
-            </form>
-
-            <div class="treserve__success" id="tourBookingSuccess" hidden>
-              <div class="treserve__success-icon" aria-hidden="true">
-                <svg width="32" height="32" viewBox="0 0 32 32" fill="none"><circle cx="16" cy="16" r="15" stroke="currentColor" stroke-width="1.5"/><path d="M9 16l5 5 9-10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              </div>
-              <p class="treserve__success-title" data-i18n="booking.successTitle">Hvala na upitu!</p>
-              <p class="treserve__success-text" data-i18n="booking.successText">
-                Vlasnik će vam se uskoro javiti te potvrditi ili odbiti rezervaciju.
-              </p>
-              <button type="button" class="btn btn--outline treserve__again" id="tourBookingAgain" data-i18n="booking.again">Nova rezervacija</button>
-            </div>
-          </div>
-
-          <div class="tours__booking">
-            <p data-i18n="tours.booking">Za rezervacije i sve informacije:</p>
-            <a href="tel:+385994130518" class="tours__phone">+385 99 413 0518</a>
-            <span class="tours__contact-name">Marko Mimica</span>
-          </div>
-        </div>
-      </div>
-
     </section>
 
     <!-- ─── PRIČA O ZINFANDELU ─── -->
@@ -1017,24 +688,11 @@
           </div>
 
           <aside class="shops__aside reveal reveal--delay" data-i18n-aria="shops.aside.aria">
-            <div class="shops__tour" hidden>
-              <span class="shops__aside-badge" data-i18n="shops.tour.badge">Vinske ture</span>
-              <h3 class="shops__subheading" data-i18n="shops.tour.h3">Polazišna točka za vaše vinske avanture</h3>
-              <p class="shops__aside-text" data-i18n="shops.tour.text">
-                Naš Wine &amp; Gastro Shop ujedno je i službeno mjesto okupljanja za sve
-                posjetitelje koji odlaze na našu Rustikalnu dalmatinsku vinsku turu. Na ovoj
-                adresi započinjemo naše druženje prije nego vas kratkom vožnjom povedemo do
-                zelenih vinograda i naše kamene konobe.
-              </p>
-              <a href="#ture" class="shops__tour-link" data-i18n="shops.tour.link">Pogledajte naše ture &rarr;</a>
-            </div>
-
             <div class="shops__contact">
               <p class="shops__contact-head" data-i18n="shops.contact.head">Kontakt &amp; radno vrijeme</p>
               <p class="shops__contact-lead" data-i18n="shops.contact.lead">
                 Radno vrijeme našeg dućana prilagođavamo sezoni. Ako nas planirate posjetiti
-                s većom grupom ili želite unaprijed rezervirati određene proizvode, slobodno
-                nam se javite:
+                s većom grupom, slobodno nam se javite:
               </p>
               <div class="shops__contact-links">
                 <a href="tel:+385994130518" class="shops__link">
@@ -1098,7 +756,7 @@
 
       <div class="container">
         <div class="gallery__footer reveal">
-          <p class="gallery__footer-text" data-i18n="gallery.teaser">Zamislite ove trenutke uživo — rezervirajte degustaciju ili nas posjetite u Omišu.</p>
+          <p class="gallery__footer-text" data-i18n="gallery.teaser">Zamislite ove trenutke uživo — posjetite nas u Omišu.</p>
           <a href="#kontakt" class="gallery__footer-link" data-i18n="gallery.cta">Javite nam se &rarr;</a>
         </div>
       </div>
@@ -1112,7 +770,7 @@
           <p class="eyebrow" data-i18n="contact.eyebrow">Kontakt</p>
           <h2 class="h2" id="contact-h" data-i18n-html="contact.h2">Posjetite <em>nas</em></h2>
           <p class="contact__lead" data-i18n="contact.invite">
-            Planirate turu, tražite vino za poklon ili želite degustaciju u Omišu? Javite nam se — rado ćemo vam pomoći.
+            Tražite vino za poklon ili nas želite posjetiti u Omišu? Javite nam se — rado ćemo vam pomoći.
           </p>
         </header>
 
@@ -1161,7 +819,7 @@
             </div>
 
             <div class="contact__foot">
-              <p class="contact__person" data-i18n="contact.phone.sub">Marko Mimica · rezervacije &amp; informacije</p>
+              <p class="contact__person" data-i18n="contact.phone.sub">Marko Mimica · informacije</p>
               <div class="contact__social">
                 <a href="https://www.instagram.com/mimica_wines/" class="contact__social-link" target="_blank" rel="noopener noreferrer" data-i18n-aria="contact.instagram.aria" data-i18n="contact.instagram">Instagram</a>
                 <a href="https://web.facebook.com/VinarijaMimica?locale=hr_HR" class="contact__social-link" target="_blank" rel="noopener noreferrer" data-i18n-aria="contact.facebook.aria" data-i18n="contact.facebook">Facebook</a>
@@ -1213,7 +871,6 @@
 
       <nav class="footer__nav" data-i18n-aria="footer.nav.aria">
         <a href="#o-nama" data-i18n="nav.o-nama">O nama</a>
-        <a href="#ture" hidden data-i18n="nav.ture">Vinske ture</a>
         <a href="#zinfandel" data-i18n="footer.zinfandel">Zinfandel</a>
         <a href="#vina" data-i18n="nav.vina">Vina</a>
         <a href="#vinogradi" data-i18n="nav.vinogradi">Vinogradi</a>
@@ -1236,21 +893,6 @@
 
     </div>
   </footer>
-
-  <!-- ─── BOOKING THANK YOU MODAL ─── -->
-  <div class="booking-modal" id="bookingThankYouModal" hidden aria-modal="true" role="dialog" aria-labelledby="bookingThankYouTitle">
-    <button type="button" class="booking-modal__backdrop" id="bookingThankYouBackdrop" data-i18n-aria="booking.modalClose" aria-label="Zatvori"></button>
-    <div class="booking-modal__panel">
-      <div class="booking-modal__icon" aria-hidden="true">
-        <svg width="32" height="32" viewBox="0 0 32 32" fill="none"><circle cx="16" cy="16" r="15" stroke="currentColor" stroke-width="1.5"/><path d="M9 16l5 5 9-10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      </div>
-      <h3 class="booking-modal__title" id="bookingThankYouTitle" data-i18n="booking.successTitle">Hvala na javljanju!</h3>
-      <p class="booking-modal__text" data-i18n="booking.successText">
-        Primili smo vaš upit za rezervaciju. Javit ćemo vam se uskoro s potvrdom termina.
-      </p>
-      <button type="button" class="btn btn--gold booking-modal__btn" id="bookingThankYouClose" data-i18n="booking.modalClose">U redu</button>
-    </div>
-  </div>
 
   <!-- ─── GALLERY LIGHTBOX ─── -->
   <div class="lightbox" id="galleryLightbox" hidden aria-modal="true" role="dialog" data-i18n-aria="lightbox.aria">
@@ -1278,8 +920,7 @@
     </svg>
   </a>
 
-  <script src="js/i18n.js?v=4"></script>
+  <script src="js/i18n.js?v=5"></script>
   <script src="js/main.js?v=8"></script>
-  <script src="js/tour-booking.js?v=8"></script>
 </body>
 </html>

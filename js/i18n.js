@@ -206,7 +206,7 @@ const I18N = {
 
     'shops.eyebrow': 'Prodajna mjesta',
     'shops.h2': 'Posjetite nas u srcu <em>Omiša</em>',
-    'shops.intro': 'Naša vina, tradicionalne likere, nagrađivanu kvasinu i maslinovo ulje možete kušati i kupiti na našem glavnom prodajnom mjestu. Bilo da tražite savršen poklon, autentični suvenir iz Dalmacije ili jednostavno želite ponijeti komadić omiške tradicije sa sobom, naša vrata su vam uvijek otvorena.',
+    'shops.intro': 'Naša vina, tradicionalne likere, nagrađivanu kvasinu i maslinovo ulje možete kušati i kupiti na našem glavnom prodajnom mjestu. Bilo da tražite savršen poklon, autentični suvenir iz Dalmacije ili jednostavno želite ponijeti komadić Omiške tradicije sa sobom, naša vrata su vam uvijek otvorena.',
     'shops.badge': 'Wine & Gastro Shop',
     'shops.name': 'Mimica Wine & Gastro Shop',
     'shops.p1': 'Smješten u samom povijesnom i kulturnom središtu grada, naš obiteljski dućan je mjesto gdje se spajaju tradicija, gostoprimstvo i najbolji okusi našeg kraja.',
